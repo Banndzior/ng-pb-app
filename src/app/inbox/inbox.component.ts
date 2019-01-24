@@ -9,18 +9,13 @@ import { InboxEmailMessage, EmailService } from '../email';
 export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
 
-  constructor(
-    public emailService: EmailService
-  ) { }
+  constructor(public emailService: EmailService) {}
 
   ngOnInit() {
-    console.log('InboxComponent.ngOnInit()');
-
-    this.emailService.emailSentEvent.subscribe((title) => {
+    this.emailService.emailSentEvent.subscribe(title => {
       console.log('emailService.emailSentEvent', title);
     });
 
-    this.emailService.getInboxMessages()
-      .then((result) => this.inboxMessages = result);
+    this.emailService.getInboxMessages().then(result => (this.inboxMessages = result));
   }
 }

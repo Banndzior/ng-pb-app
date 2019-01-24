@@ -19,14 +19,13 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>
-      <input type="text" [(ngModel)]="title" />
-    </p>
+    <label>Title:</label>
+    <p><input type="text" [(ngModel)]="title" /></p>
+    <label>Message:</label>
+    <p><angular-editor [(ngModel)]="message" [config]="config"></angular-editor></p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light"
-      (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-danger"
-      (click)="sendMessage(modal)">Send</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click'); whenCloseWindow(modal)">Close</button>
+    <button type="button" class="btn btn-danger" (click)="sendMessage(modal)">Send</button>
   </div>
 </ng-template>

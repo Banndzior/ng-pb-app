@@ -13,6 +13,8 @@ import { DraftsComponent } from './drafts/drafts.component';
 import { SentComponent } from './sent/sent.component';
 import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const routes: Routes = [];
 
@@ -31,12 +33,12 @@ const routes: Routes = [];
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    HttpClientModule,
+    AngularEditorModule
   ],
   exports: [RouterModule],
-  providers: [
-    EmailService
-  ],
+  providers: [EmailService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
