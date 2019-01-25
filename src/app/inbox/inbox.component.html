@@ -5,13 +5,14 @@
   </li>
 </ul> -->
 
-<ngb-accordion
-  [closeOthers]="true"
-  activeIds="static-0">
-  <ngb-panel id="static-{{i}}" [title]="item.title"
-    *ngFor="let item of inboxMessages; let i=index">
+<ngb-accordion [closeOthers]="true" activeIds="static-0">
+  <ngb-panel
+    id="static-{{ i }}"
+    [title]="item.title"
+    *ngFor="let item of inboxMessages; let i = index"
+  >
     <ng-template ngbPanelContent>
-      {{item.content}}
+      <div [innerHTML]="item.content"></div>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
