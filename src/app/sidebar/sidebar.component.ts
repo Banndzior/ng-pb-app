@@ -8,6 +8,7 @@ import { InboxType } from '../inbox-type.enum';
 })
 export class SidebarComponent implements OnInit {
   public inboxTypes: Array<string>;
+  public activeItem: string;
 
   // InboxTypeSelected
   @Output()
@@ -25,6 +26,7 @@ export class SidebarComponent implements OnInit {
       'sent',
       'all mail'
     ];
+    this.activeItem = 'inbox';
   }
 
   // nowy mail
@@ -35,9 +37,12 @@ export class SidebarComponent implements OnInit {
   // wybor skrzynki
   selectInboxType(index: number) {
     const inboxType = <InboxType>index;
+    this.activeItem = this.inboxTypes[index];
     console.log('select:', index, InboxType[index]);
-    this.myClick.emit(inboxType);
+    console.log('Active item: ' + this.activeItem);
 
+    this.myClick.emit(inboxType);
+ 
     /*
     switch (inboxType) {
       case InboxType.Inbox:

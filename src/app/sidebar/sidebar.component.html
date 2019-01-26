@@ -5,7 +5,7 @@
   </div>
   <ul class="nav flex-column">
     <li *ngFor="let item of inboxTypes; let i=index" class="toc-item">
-      <a href="#" (click)="selectInboxType(i)" class="toc-link">{{ item }}</a>
+      <a href="#" (click)="selectInboxType(i)" class="toc-link" [ngClass]="{'activeItemClass': item === activeItem}">{{ item }}</a>
     </li>
   </ul>
 </nav>
