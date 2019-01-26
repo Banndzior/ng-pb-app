@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
 
   // nowy mail
   composeEmail() {
-    this.newEmail.emit("");
+    this.newEmail.emit(" ");
   }
 
   // wybor skrzynki
