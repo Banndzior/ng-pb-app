@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { InboxEmailMessage, EmailService } from '../email';
 
 @Component({
@@ -8,6 +8,9 @@ import { InboxEmailMessage, EmailService } from '../email';
 })
 export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
+
+  @Input()
+  filter: string;
 
   constructor(
     public emailService: EmailService
@@ -20,7 +23,11 @@ export class InboxComponent implements OnInit {
       console.log('emailService.emailSentEvent', title);
     });
 
-    this.emailService.getInboxMessages()
+    this.emailService.filterEvent.subscribe((messages) => {
+      this.inboxMessages = messages;
+    });
+
+    this.emailService.getInboxMessages(this.filter)
       .then((result) => this.inboxMessages = result);
   }
 }

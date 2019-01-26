@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InboxType } from '../inbox-type.enum';
+import {EmailService} from '../email';
 
 @Component({
   selector: 'app-mail-content',
@@ -9,11 +10,20 @@ import { InboxType } from '../inbox-type.enum';
 export class MailContentComponent implements OnInit {
   @Input()
   public inboxType: InboxType;
-
+  filterText: string;
   InboxType = InboxType;
 
-  constructor() { }
+  constructor(private emailService: EmailService) { }
 
   ngOnInit() {
+  }
+
+  filterSelectedInbox(filterText: any) {
+    this.filterText = filterText;
+    if(this.inboxType === 0) {
+      this.emailService.getInboxMessages(filterText);
+    } else {
+
+    }
   }
 }

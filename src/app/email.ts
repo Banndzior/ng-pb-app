@@ -1,51 +1,68 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import {Injectable, Output, EventEmitter} from '@angular/core';
 
 export interface IEmailMessage {
-    title: string;
-    content: string;
-    send();
+  title: string;
+  content: string;
+
+  send();
 }
 
 export class InboxEmailMessage implements IEmailMessage {
-    constructor(
-        public title: string,
-        public content: string
-    ) { }
+  constructor(
+    public title: string,
+    public content: string
+  ) {
+  }
 
-    send() { }
+  send() {
+  }
 }
 
 export class DraftEmailMessage implements IEmailMessage {
-    public title: string;
-    public content: string;
-    isSent: boolean;
+  public title: string;
+  public content: string;
+  isSent: boolean;
 
-    send() { }
+  send() {
+  }
 }
 
 @Injectable()
 export class EmailService {
-    inboxMessages: InboxEmailMessage[] = [
-        new InboxEmailMessage('tytul1', 'tresc1'),
-        new InboxEmailMessage('tytul2', 'tresc2'),
-        new InboxEmailMessage('tytul3', 'tresc3'),
-        new InboxEmailMessage('tytul4', 'tresc4')
-    ];
+  inboxMessages: InboxEmailMessage[] = [
+    new InboxEmailMessage('tytul1', 'tresc1'),
+    new InboxEmailMessage('tytul2', 'tresc2'),
+    new InboxEmailMessage('tytul3', 'tresc3'),
+    new InboxEmailMessage('tytul4', 'tresc4')
+  ];
 
-    emailSentEvent = new EventEmitter<any>();
+  emailSentEvent = new EventEmitter<any>();
+  filterEvent = new EventEmitter<any>();
 
-    public sentEmail(title: string, content: string) {
-        this.inboxMessages.push(
-            new InboxEmailMessage(title, content)
+  public sentEmail(title: string, content: string) {
+    this.inboxMessages.push(
+      new InboxEmailMessage(title, content)
+    );
+    this.emailSentEvent.emit(title);
+  }
+
+  public getInboxMessages(filterText: string):
+    Promise<InboxEmailMessage[]> {
+    let messages = [];
+    if (filterText && filterText.length > 0) {
+      messages = this.inboxMessages
+        .filter(m =>
+          m.title.toLowerCase().includes(filterText.toLowerCase()) || m.content.toLowerCase().includes(filterText.toLowerCase())
         );
-        this.emailSentEvent.emit(title);
+    } else {
+      messages = this.inboxMessages;
     }
-
-    public getInboxMessages():
-        Promise<InboxEmailMessage[]> {
-        return new Promise<InboxEmailMessage[]>((resolve) => {
-            setTimeout(() => resolve(this.inboxMessages), 1000);
-        });
-    }
+    this.filterEvent.emit(messages);
+    return new Promise<InboxEmailMessage[]>((resolve) => {
+      setTimeout(() => resolve(
+        messages
+      ), 1000);
+    });
+  }
 
 }
