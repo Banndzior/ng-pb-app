@@ -4,8 +4,7 @@
       <app-sidebar (myClick)="inboxTypeSelected($event)" (newEmail)="newEmailEvent($event)"></app-sidebar>
     </div>
     <div class="col-10 col-lg-10">
-      <app-mail-content [inboxType]="inboxType"></app-mail-content>
-      <!-- <app-test-item></app-test-item> -->
+      <app-email-editor></app-email-editor>
     </div>
     <router-outlet></router-outlet>
   </div>
@@ -20,7 +19,7 @@
   </div>
   <div class="modal-body">
     <p>
-      <input type="text" [(ngModel)]="title" />
+      <!-- <input type="text" [(ngModel)]="title" /> -->
     </p>
   </div>
   <div class="modal-footer">

@@ -1,0 +1,42 @@
+<!-- <form method="POST" enctype="application/x-www-form-urlencoded"> -->
+<!-- <form #myForm="ngForm" (ngSubmit)="formSubmit(myForm)">
+  <label for="title">Tytul:</label>
+  <input type="text" id="title" name="title" [(ngModel)]="title" #myTitle="ngModel" required minlength="3" maxlength="10"
+    pattern="^[A-Z]+$" />
+  <br />
+  <div *ngIf="myTitle.errors?.required">
+    Pole jest wymagane
+  </div>
+  <div *ngIf="myTitle.errors?.minlength">
+    Minimalna dlugosc 3 znaki
+  </div>
+  <div *ngIf="myTitle.errors?.maxlength">
+    Maksymalna dlugosc 10 znaki
+  </div>
+  <div *ngIf="myTitle.errors?.pattern">
+    Moga byc tylko duże literki
+  </div>
+  <button type="reset">Wyczysc</button>
+  <button type="submit" [disabled]="myForm.invalid && false">
+    Wyslij
+  </button>
+</form> -->
+
+<form
+  novalidate
+  #myReactiveForm="ngForm"
+  (ngSubmit)="formSubmit(myReactiveForm)"
+  [formGroup]="formGroup">
+  <label for="title">Tytul:</label>
+  <input type="text" id="title" name="title"
+    formControlName="title" />
+  <br />
+  <label for="email">Adres e-mail:</label>
+  <input type="text" id="email" name="email"
+    formControlName="email" />
+  <br />
+  <button type="reset">Wyczysc</button>
+  <button type="submit" [disabled]="myReactiveForm.invalid">
+    Wyslij
+  </button>
+</form>
