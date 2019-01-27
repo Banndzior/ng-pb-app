@@ -10,7 +10,7 @@ import { EmailService } from './email';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public title: string;
+  public title: string = 'politechnika';
   public inboxType: InboxType = InboxType.Inbox;
 
   @ViewChild('content')
@@ -28,7 +28,7 @@ export class AppComponent {
   public newEmailEvent(title: string) {
     console.log('new message', title);
 
-    this.title = title;
+    // this.title = title;
     this.modalService.open(this.content, { size: 'lg' });
   }
 

@@ -1,0 +1,30 @@
+<!-- <form method="POST" enctype="multipart/form-data"> -->
+<form #f="ngForm" (ngSubmit)="formSubmit($event, f)">
+  <br />
+  <label for="title">Tytul:</label>
+  <input name="title" [(ngModel)]="editedEmail.title" required minlength="5" />
+  <br />
+  <label for="receiver">Odbiorca:</label>
+  <input type="text" name="receiver" [ngModel]="editedEmail.receiver" (ngModelChange)="receiverChange($event)" required
+    pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
+  <br />
+  <div class="invalid" *ngIf="f.controls.receiver?.errors?.required">
+    Pole jest wymagane
+  </div>
+  <div class="invalid" *ngIf="f.controls.receiver?.errors?.pattern">
+    Pole musi byc mailem
+  </div>
+  <br />
+  <label for="content">Tresc:</label>
+  <textarea name="content" required>
+  </textarea>
+  <br />
+  {{ f.value | json }}
+  <br />
+  <button type="reset">
+    Reset
+  </button>
+  <button type="submit" [disabled]="f.invalid">
+    Save
+  </button>
+</form>
