@@ -5,11 +5,17 @@
   </li>
 </ul> -->
 
+<div class="form-control">
+  Search:
+  <input type="text" (keyup)="handleSearchInput($event)"/>
+</div>
+<br />
+
 <ngb-accordion
   [closeOthers]="true"
   activeIds="static-0">
   <ngb-panel id="static-{{i}}" [title]="item.title"
-    *ngFor="let item of inboxMessages; let i=index">
+    *ngFor="let item of filteredMessages; let i=index">
     <ng-template ngbPanelContent>
       {{item.content}}
     </ng-template>

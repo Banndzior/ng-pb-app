@@ -8,19 +8,26 @@ import { InboxEmailMessage, EmailService } from '../email';
 })
 export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
-
+  filteredMessages:InboxEmailMessage[];
+  
   constructor(
     public emailService: EmailService
   ) { }
 
   ngOnInit() {
-    console.log('InboxComponent.ngOnInit()');
-
     this.emailService.emailSentEvent.subscribe((title) => {
-      console.log('emailService.emailSentEvent', title);
     });
 
     this.emailService.getInboxMessages()
-      .then((result) => this.inboxMessages = result);
+      .then((result) => {
+        this.inboxMessages = result; 
+        return result;
+      })
+      .then((result) => this.filteredMessages = result);
+  }
+
+  handleSearchInput(event: KeyboardEvent) {
+    const keyValue = event.target.value;
+    this.filteredMessages = this.inboxMessages.filter(email => email.title.includes(keyValue) || email.content.includes(keyValue));
   }
 }
