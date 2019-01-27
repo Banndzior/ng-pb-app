@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
   public activeItem: string;
 
   // InboxTypeSelected
-  @Output()
+  @Output()git 
   myClick: EventEmitter<InboxType> = new EventEmitter<InboxType>();
 
   @Output()
