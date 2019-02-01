@@ -8,11 +8,15 @@ import { InboxEmailMessage, EmailService } from '../email';
 })
 export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
+  
+  activeItem : any;
+  itemNumber : number;
 
   constructor(
     public emailService: EmailService
   ) { }
-
+  
+  
   ngOnInit() {
     console.log('InboxComponent.ngOnInit()');
 
@@ -22,5 +26,11 @@ export class InboxComponent implements OnInit {
 
     this.emailService.getInboxMessages()
       .then((result) => this.inboxMessages = result);
+  }
+  onclick(item,i){
+  
+    this.activeItem = item;
+    this.itemNumber = i;
+
   }
 }
