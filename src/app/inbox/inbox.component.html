@@ -11,7 +11,7 @@
   <ngb-panel id="static-{{i}}" [title]="item.title"
     *ngFor="let item of inboxMessages; let i=index">
     <ng-template ngbPanelContent>
-      {{item.content}}
+      <div [innerHTML]="item.content"></div>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>

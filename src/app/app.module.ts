@@ -14,6 +14,10 @@ import { SentComponent } from './sent/sent.component';
 import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
 
+import { NgxEditorModule } from 'ngx-editor';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HttpClientModule } from '@angular/common/http';
+
 const routes: Routes = [];
 
 @NgModule({
@@ -31,7 +35,10 @@ const routes: Routes = [];
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    NgxEditorModule,
+    AngularFontAwesomeModule,
+    HttpClientModule
   ],
   exports: [RouterModule],
   providers: [

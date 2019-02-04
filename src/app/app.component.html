@@ -19,9 +19,15 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>
+    <div class="col-md-12">
       <input type="text" [(ngModel)]="title" />
-    </p>
+    </div>
+    <br/>
+    <div class="col-md-12">
+    <!-- https://www.npmjs.com/package/ngx-editor
+    https://stackoverflow.com/questions/38796541/how-to-add-font-awesome-to-angular-2-cli-project -->
+    <app-ngx-editor [placeholder]="'Type in content...'" [spellcheck]="true" [(ngModel)]="mailContent"></app-ngx-editor>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light"
