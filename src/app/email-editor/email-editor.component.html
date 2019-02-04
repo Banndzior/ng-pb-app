@@ -1,0 +1,25 @@
+<form #myForm="ngForm" novalidate (ngSubmit)="formSubmit(myForm)">
+  <label>Tytuł:</label>
+  <!--  -->
+  <input
+    name="title"
+    type="text"
+    [(ngModel)]="title"
+    required
+    minlength="3"
+    maxlength="10"
+    pattern="^[a-zA-Z]+$"
+  />
+  <!--  -->
+  <br />
+  <div *ngIf="myForm.controls.title?.errors?.required">Pole jest wymagane</div>
+  <br />
+  <br />
+  <div *ngIf="myForm.controls.title?.errors?.pattern">
+    tylko duże lub małe litery
+  </div>
+  <br />
+  <button type="reset">Resetuj</button>
+  <!--  -->
+  <button type="submit" [disabled]="myForm.invalid">Wyślij</button>
+</form>
