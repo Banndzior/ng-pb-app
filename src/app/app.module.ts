@@ -13,6 +13,7 @@ import { DraftsComponent } from './drafts/drafts.component';
 import { SentComponent } from './sent/sent.component';
 import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
+import { SendmailComponent } from './sendmail/sendmail.component';
 
 const routes: Routes = [];
 
@@ -25,7 +26,8 @@ const routes: Routes = [];
     InboxComponent,
     DraftsComponent,
     SentComponent,
-    AllMailComponent
+    AllMailComponent,
+    SendmailComponent
   ],
   imports: [
     BrowserModule,

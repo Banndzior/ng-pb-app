@@ -1,7 +1,8 @@
 <div class="container-fluid">
   <div class="row flex-xl-nowrap">
     <div class="col-2 col-lg-2">
-      <app-sidebar (myClick)="inboxTypeSelected($event)" (newEmail)="newEmailEvent($event)"></app-sidebar>
+      <app-sidebar (myClick)="inboxTypeSelected($event)"></app-sidebar>
+      <app-email (newEmail)="newEmailEvent($event)"></app-email>
     </div>
     <div class="col-10 col-lg-10">
       <app-mail-content [inboxType]="inboxType"></app-mail-content>
