@@ -13,6 +13,8 @@ import { DraftsComponent } from './drafts/drafts.component';
 import { SentComponent } from './sent/sent.component';
 import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { SendmailComponent } from './sendmail/sendmail.component';
 import { RefreshButtonComponent } from './refresh-button/refresh-button.component';
 
 const routes: Routes = [];
@@ -27,6 +29,8 @@ const routes: Routes = [];
     DraftsComponent,
     SentComponent,
     AllMailComponent,
+    SendmailComponent,
+    LoadingSpinnerComponent,
     RefreshButtonComponent
   ],
   imports: [
