@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sent',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sent.component.scss']
 })
 export class SentComponent implements OnInit {
+
+  @Input()
+  filter: string;
 
   constructor() { }
 

@@ -3,7 +3,8 @@
 <p>
   InboxType: {{ inboxType }} {{ InboxType[inboxType] }}
 </p> -->
-<app-inbox *ngIf="inboxType === InboxType.Inbox"></app-inbox>
-<app-drafts *ngIf="inboxType === InboxType.Drafts"></app-drafts>
-<app-sent *ngIf="inboxType === InboxType.Sent"></app-sent>
-<app-all-mail *ngIf="inboxType === InboxType.AllMail"></app-all-mail>
+<app-filter (filterBox)="filterSelectedInbox($event)"></app-filter>
+<app-inbox *ngIf="inboxType === InboxType.Inbox" filter="{{filterText}}"></app-inbox>
+<app-drafts *ngIf="inboxType === InboxType.Drafts" filter="{{filterText}}"></app-drafts>
+<app-sent *ngIf="inboxType === InboxType.Sent" filter="{{filterText}}"></app-sent>
+<app-all-mail *ngIf="inboxType === InboxType.AllMail" filter="{{filterText}}"></app-all-mail>
