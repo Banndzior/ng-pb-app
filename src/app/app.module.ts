@@ -13,6 +13,7 @@ import { DraftsComponent } from './drafts/drafts.component';
 import { SentComponent } from './sent/sent.component';
 import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
+import { SpinnerComponent } from './spinner/spinner.component';
 import { FilterComponent } from './filter/filter.component';
 
 const routes: Routes = [];
@@ -27,6 +28,7 @@ const routes: Routes = [];
     DraftsComponent,
     SentComponent,
     AllMailComponent,
+    SpinnerComponent,
     FilterComponent
   ],
   imports: [
