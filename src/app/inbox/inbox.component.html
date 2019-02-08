@@ -1,17 +1,22 @@
-<!-- <ul>
-  <li *ngFor="let item of inboxMessages">
+<ul>
+    <li *ngFor="let item of inboxMessages">
     {{ item.title }}<br />
     {{ item.content }}
   </li>
-</ul> -->
+</ul>
 
-<ngb-accordion
-  [closeOthers]="true"
-  activeIds="static-0">
-  <ngb-panel id="static-{{i}}" [title]="item.title"
-    *ngFor="let item of inboxMessages; let i=index">
-    <ng-template ngbPanelContent>
-      {{item.content}}
+<ngb-accordion [closeOthers]="true" activeIds="0" (panelChange)="toggleAccordian($event)">
+  <ngb-panel id="{{ i }}" *ngFor="let message of inboxMessages; let i = index">
+    <ng-template ngbPanelTitle *ngIf="selectedEmail === message">
+      <div style="color: rgb(177, 62, 16)">{{ message.title}}</div>
     </ng-template>
+    <ng-template ngbPanelTitle *ngIf="selectedEmail !== message">
+      {{ message.title}}
+    </ng-template>
+    <ng-template ngbPanelContent> {{ message.content }} </ng-template>
   </ngb-panel>
 </ngb-accordion>
+  
+
+
+

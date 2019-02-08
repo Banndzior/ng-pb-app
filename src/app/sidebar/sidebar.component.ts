@@ -37,25 +37,5 @@ export class SidebarComponent implements OnInit {
     const inboxType = <InboxType>index;
     console.log('select:', index, InboxType[index]);
     this.myClick.emit(inboxType);
-
-    /*
-    switch (inboxType) {
-      case InboxType.Inbox:
-        break;
-      case InboxType.Drafts:
-        break;
-      case InboxType.Sent:
-        break;
-      case InboxType.AllMail:
-        break;
-    } */
-
-    /* js
-    switch (index) {
-      case 0:
-        break;
-      case 1:
-        break;
-    } */
   }
 }
