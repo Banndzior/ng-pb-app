@@ -14,9 +14,6 @@ export class SidebarComponent implements OnInit {
   @Output()
   myClick: EventEmitter<InboxType> = new EventEmitter<InboxType>();
 
-  @Output()
-  newEmail: EventEmitter<any> = new EventEmitter<any>();
-
   ngOnInit() {
     this.inboxTypes = [
       'inbox',
@@ -24,15 +21,6 @@ export class SidebarComponent implements OnInit {
       'sent',
       'all mail'
     ];
-  }
-
-  // nowy mail
-  composeEmail() {
-    const defaultEmailTitle: object = {
-          defaultTitle: EmailAppProperties.DEFAULT_MESSAGE_TITLE,
-          defaultMessage: EmailAppProperties.DEFAULT_MESSAGE_CONTENT
-    };
-    this.newEmail.emit(defaultEmailTitle);
   }
 
   // wybor skrzynki
