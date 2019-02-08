@@ -41,7 +41,10 @@ export class AppComponent {
   @ViewChild('content')
   content: ElementRef;
 
-  constructor(private modalService: NgbModal, private emailService: EmailService) {}
+  constructor(
+    private modalService: NgbModal,
+    private emailService: EmailService
+  ) { }
 
   public inboxTypeSelected(event: InboxType) {
     this.inboxType = event;
