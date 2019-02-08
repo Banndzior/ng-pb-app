@@ -5,6 +5,10 @@
   </li>
 </ul> -->
 
+<div *ngIf = "display">
+  <app-spinner></app-spinner>
+</div>
+
 <ngb-accordion [closeOthers]="true" activeIds="0" (panelChange)="toggleAccordian($event)">
   <ngb-panel id="{{ i }}" *ngFor="let message of inboxMessages; let i = index">
     <ng-template ngbPanelTitle *ngIf="selectedEmail === message">
