@@ -15,6 +15,9 @@ import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { SendmailComponent } from './sendmail/sendmail.component';
+import { RefreshButtonComponent } from './refresh-button/refresh-button.component';
 
 const routes: Routes = [];
 
@@ -27,7 +30,10 @@ const routes: Routes = [];
     InboxComponent,
     DraftsComponent,
     SentComponent,
-    AllMailComponent
+    AllMailComponent,
+    SendmailComponent,
+    LoadingSpinnerComponent,
+    RefreshButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,9 @@ const routes: Routes = [];
     AngularEditorModule
   ],
   exports: [RouterModule],
-  providers: [EmailService],
+  providers: [
+    EmailService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>NgPbApp</title>
@@ -9,10 +10,31 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.css" />
+  <link rel="stylesheet" href="/src/styles.scss" />
 </head>
+
 <body>
   <app-root>
-    loading...
+    <!-- Pre-loading spinner -->
+    <!-- This code within the app-root will be wiped of once the child component is loaded -->
+    <!-- This code will not even be shown in the source code once the child component is loaded -->
+    <!-- We can put any code css/html/image/etc here -->
+    <div class="lds-default">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </app-root>
+
 </body>
+
 </html>
