@@ -1,19 +1,16 @@
-<!-- <ul>
-  <li *ngFor="let item of inboxMessages">
-    {{ item.title }}<br />
-    {{ item.content }}
-  </li>
-</ul> -->
-
-<app-loading-spinner *ngIf="showLoadingSpinner"></app-loading-spinner>
-
+<H4> Mail selected: {{ selectedId }}</H4>
 <ngb-accordion
   [closeOthers]="true"
-  activeIds="static-0">
-  <ngb-panel id="static-{{i}}" [title]="item.title"
-    *ngFor="let item of inboxMessages; let i=index">
+  activeIds="static-0"
+  (panelChange)="toggleAccordian($event)"
+>
+  <ngb-panel
+    id="static-{{ i }}"
+    [title]="item.title"
+    *ngFor="let item of inboxMessages; let i = index"
+  >
     <ng-template ngbPanelContent>
-      {{item.content}}
+      {{ item.content }}
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
