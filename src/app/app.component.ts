@@ -35,7 +35,7 @@ export class AppComponent {
   }
 
   public sendMessage() {
-    this.emailService.sendMessage(this.title, this.message);
+    this.emailService.sentEmail(this.title, this.message);
     this.modalService.dismissAll();
   }
 }
