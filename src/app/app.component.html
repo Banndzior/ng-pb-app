@@ -5,6 +5,10 @@
         (myClick)="inboxTypeSelected($event)"
         (newEmail)="newEmailEvent($event.defaultTitle, $event.defaultMessage)"
 
+        <nav class="toc">
+          <app-email (newEmail)="newEmailEvent($event)"></app-email>
+          <app-sidebar (myClick)="inboxTypeSelected($event)"></app-sidebar>
+        </nav>
       ></app-sidebar>
     </div>
     <div class="col-10 col-lg-10">
@@ -18,12 +22,7 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title">New message</h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -32,15 +31,9 @@
     <p><angular-editor placeholder="'Wpisz treść e-maila'" [(ngModel)]="message"></angular-editor></p>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-light"
-      (click)="modal.close('Close click')"
-    >
-      Close
-    </button>
-    <button type="button" class="btn btn-danger" (click)="sendMessage()">
-      Send
-    </button>
+    <button type="button" class="btn btn-light"
+      (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-danger"
+      (click)="sendMessage(modal)">Send</button>
   </div>
 </ng-template>
