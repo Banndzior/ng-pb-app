@@ -8,8 +8,6 @@ import { EmailAppProperties } from '../properties.enum';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
   public inboxTypes: Array<string>;
 
   // InboxTypeSelected
@@ -18,12 +16,10 @@ export class SidebarComponent implements OnInit {
 
   @Output()
   newEmail: EventEmitter<any> = new EventEmitter<any>();
-    private defaultTitle: string;
 
   ngOnInit() {
     this.inboxTypes = [
       'inbox',
-      'calendar',
       'drafts',
       'sent',
       'all mail'
