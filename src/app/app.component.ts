@@ -12,6 +12,7 @@ import { EmailService } from './email';
 export class AppComponent {
   public title: string;
   public inboxType: InboxType = InboxType.Inbox;
+  public mailContent: string
 
   @ViewChild('content')
   content: ElementRef;
@@ -29,11 +30,12 @@ export class AppComponent {
     console.log('new message', title);
 
     this.title = title;
+    this.mailContent = "";
     this.modalService.open(this.content, { size: 'lg' });
   }
 
   public sendMessage(modal) {
-    this.emailService.sentEmail(this.title, 'content');
+    this.emailService.sentEmail(this.title, this.mailContent);
     console.log('message sent');
     modal.close();
   }
