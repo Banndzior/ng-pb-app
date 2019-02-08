@@ -26,11 +26,11 @@ export class AppComponent {
     this.inboxType = event;
   }
 
-  public newEmailEvent(title: string, message: string) {
-    console.log('new message', title);
+  public newEmailEvent(event) {
+    console.log('new message', event);
 
-    this.title = title;
-    this.message = message;
+    this.title = event.title;
+    this.message = event.message;
     this.modalService.open(this.content, { size: 'lg' });
   }
 

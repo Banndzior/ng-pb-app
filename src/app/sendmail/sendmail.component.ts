@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { EmailAppProperties } from '../properties.enum';
 
 @Component({
   selector: 'app-email',
@@ -14,7 +15,10 @@ export class SendmailComponent implements OnInit {
   }
 
   composeEmail() {
-    this.newEmail.emit('i\'m new');
+    this.newEmail.emit({
+      title: EmailAppProperties.DEFAULT_MESSAGE_TITLE,
+      message: EmailAppProperties.DEFAULT_MESSAGE_CONTENT
+    });
   }
 
 }
