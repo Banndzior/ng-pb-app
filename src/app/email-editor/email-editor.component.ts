@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class EmailContent {
   constructor(
@@ -16,7 +16,12 @@ export class EmailContent {
 })
 export class EmailEditorComponent implements OnInit {
   editedEmail: EmailContent = new EmailContent(
-    'przyklad', 'kamil.mijacz@gmail.com', '');
+    'przyklad', 'kamil.mijacz@gmail.com', 'tresc');
+
+  formGroup: FormGroup = new FormGroup({
+    title: new FormControl('tytul', Validators.required),
+    receiver: new FormControl('mail@mail.com', Validators.required)
+  });
 
   constructor() { }
 

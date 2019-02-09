@@ -1,11 +1,27 @@
 <!-- <form method="POST" enctype="multipart/form-data"> -->
-<form #f="ngForm" (ngSubmit)="formSubmit($event, f)">
+<!-- <form #f="ngForm" (ngSubmit)="formSubmit($event, f)">
   <br />
   <label for="title">Tytul:</label>
-  <input name="title" [(ngModel)]="editedEmail.title" required minlength="5" />
+  <input name="title"
+    [(ngModel)]="editedEmail.title"
+    required
+    minlength="5"
+    maxlength="10" />
   <br />
+  <div class="invalid" *ngIf="f.controls.title?.errors?.required">
+    Pole tytul jest wymagane
+  </div>
+  <div class="invalid" *ngIf="f.controls.title?.errors?.minlength">
+    Pole tytul musi byc dluzsze niz 5 znakow
+  </div>
+  <div class="invalid" *ngIf="f.controls.title?.errors?.maxlength">
+    Pole tytul musi byc krotsze niz 10 znakow
+  </div>
   <label for="receiver">Odbiorca:</label>
-  <input type="text" name="receiver" [ngModel]="editedEmail.receiver" (ngModelChange)="receiverChange($event)" required
+  <input type="text" name="receiver"
+    [ngModel]="editedEmail.receiver"
+    (ngModelChange)="receiverChange($event)"
+    required
     pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
   <br />
   <div class="invalid" *ngIf="f.controls.receiver?.errors?.required">
@@ -16,10 +32,26 @@
   </div>
   <br />
   <label for="content">Tresc:</label>
-  <textarea name="content" required>
+  <textarea name="content" [(ngModel)]="editedEmail.content" required>
   </textarea>
   <br />
   {{ f.value | json }}
+  <br />
+  <button type="reset">
+    Reset
+  </button>
+  <button type="submit" [disabled]="f.invalid">
+    Save
+  </button>
+</form> -->
+
+<form novalidate #f="ngForm" (ngSubmit)="formSubmit($event, f)"
+  [formGroup]="formGroup">
+  <label for="title">Tytul:</label>
+  <input name="title" id="title" formControlName="title" />
+  <br />
+  <label for="receiver">Odbiorca:</label>
+  <input type="text" name="receiver" formControlName="receiver" />
   <br />
   <button type="reset">
     Reset
