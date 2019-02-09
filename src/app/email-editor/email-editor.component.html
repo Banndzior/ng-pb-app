@@ -1,0 +1,49 @@
+<!-- <form method="POST" enctype="application/x-www-form-urlencoded"> -->
+<!-- <form #myForm="ngForm" novalidate
+  (ngSubmit)="formSubmit(myForm)">
+  <label>Tytul:</label>
+  <input name="title" type="text"
+    [(ngModel)]="title"
+    required
+    minlength="3"
+    maxlength="10"
+    pattern="^[a-zA-Z]+$" />
+  <br />
+  <div *ngIf="myForm.controls.title?.errors?.required">
+    Pole jest wymagane
+  </div>
+  <div *ngIf="myForm.controls.title?.errors?.minlength">
+      Pole jest za krotkie
+  </div>
+  <div *ngIf="myForm.controls.title?.errors?.pattern">
+      Tylko duze/male litery
+  </div>
+  <br />
+  <label>Adres e-mail:</label>
+  <input name="email" type="text"
+    [(ngModel)]="email"
+    required />
+  <br />
+  <button type="reset">Resetuj</button>
+  <button type="submit">
+    Wyslij
+  </button>
+</form> -->
+
+<form novalidate
+  (ngSubmit)="formSubmit(formGroup)"
+  [formGroup]="formGroup">
+  <label>Tytul:</label>
+  <input name="title" type="text" formControlName="title" />
+  <br />
+  <label>Adres e-mail:</label>
+  <input name="email" type="text" formControlName="email" />
+  <br />
+  <button type="reset">Resetuj</button>
+  <button type="submit">
+    Wyslij
+  </button>
+  <div *ngIf="formGroup.get('title')?.hasError('minlength')">
+      Pole jest za krotkie
+  </div>
+</form>
