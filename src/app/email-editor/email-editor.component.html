@@ -1,0 +1,30 @@
+<form #f="ngForm" 
+(ngSubmit)="formSubmit($event, f)">
+  <br/>
+  <label for="title"> <Strong>Tytuł:</Strong></label>
+  <input name="title"
+  [(ngModel)]="editedEmail.title"
+   required/>
+  <br/>
+  <label for="title"> <Strong>Odbiorca:</Strong></label>
+  <input name="receiver"
+  [ngModel]="editedEmail.reciver"
+   required/>
+  <br/>
+  <div *ngIf="f.controls. reciver?.errors">
+    Pole jest nieprawidłowe
+  </div>
+  <br/>
+  <label for="title"> <Strong>Treść:</Strong></label>
+  <textarea name="content" required>
+
+  </textarea>
+  <br/>
+  {{f.value | json}}
+  <br/>
+  <button type="reset">
+    <b>Reset</b>
+  </button>
+  <button type="submit" [disabled] = "f.invalid">
+  <b>Save</b>
+</button></form>

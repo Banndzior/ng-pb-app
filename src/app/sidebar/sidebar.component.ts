@@ -8,6 +8,7 @@ import { InboxType } from '../inbox-type.enum';
 })
 export class SidebarComponent implements OnInit {
   public inboxTypes: Array<string>;
+  selindex: number = 0;
 
   // InboxTypeSelected
   @Output()
@@ -34,6 +35,7 @@ export class SidebarComponent implements OnInit {
 
   // wybor skrzynki
   selectInboxType(index: number) {
+    this.selindex = index;
     const inboxType = <InboxType>index;
     console.log('select:', index, InboxType[index]);
     this.myClick.emit(inboxType);
