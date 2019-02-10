@@ -9,6 +9,8 @@ import { InboxEmailMessage, EmailService } from '../email';
 export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
 
+  showLoadingSpinner: boolean = true;
+
   constructor(
     public emailService: EmailService
   ) { }
@@ -21,6 +23,7 @@ export class InboxComponent implements OnInit {
     });
 
     this.emailService.getInboxMessages()
-      .then((result) => this.inboxMessages = result);
+      .then((result) => this.inboxMessages = result)
+      .finally(() => this.showLoadingSpinner = false)
   }
 }

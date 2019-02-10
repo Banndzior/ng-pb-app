@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <div class="row flex-xl-nowrap">
     <div class="col-2 col-lg-2">
-      <app-sidebar (myClick)="inboxTypeSelected($event)" (newEmail)="newEmailEvent($event)"></app-sidebar>
+        <nav class="toc">
+          <app-email (newEmail)="newEmailEvent($event)"></app-email>
+          <app-sidebar (myClick)="inboxTypeSelected($event)"></app-sidebar>
+        </nav>
     </div>
     <div class="col-10 col-lg-10">
       <app-mail-content [inboxType]="inboxType"></app-mail-content>
@@ -19,9 +22,8 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>
-      <input type="text" [(ngModel)]="title" />
-    </p>
+    <p><input type="text" [(ngModel)]="title" /></p>
+    <p><angular-editor placeholder="'Wpisz treść e-maila'" [(ngModel)]="message"></angular-editor></p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light"
