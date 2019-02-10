@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InboxEmailMessage, EmailService } from '../email';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,9 +14,6 @@ export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
   selectedEmail: InboxEmailMessage;
   display: boolean = false;
-
-  @Input()
-  filter: string;
 
   constructor(
     private emailService: EmailService
@@ -34,13 +31,6 @@ export class InboxComponent implements OnInit {
     this.emailService.emailSentEvent.subscribe((title) => {
       console.log('emailService.emailSentEvent', title);
     });
-
-    this.emailService.filterEvent.subscribe((messages) => {
-      this.inboxMessages = messages;
-    });
-
-    this.emailService.getInboxMessages(this.filter)
-      .then((result) => this.inboxMessages = result);
 
     this.display = true;
 
