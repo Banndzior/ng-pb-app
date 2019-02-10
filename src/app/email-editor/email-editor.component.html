@@ -1,7 +1,14 @@
 <!-- <form method="POST" enctype="application/x-www-form-urlencoded"> -->
 <!-- <form #myForm="ngForm" (ngSubmit)="formSubmit(myForm)">
   <label for="title">Tytul:</label>
-  <input type="text" id="title" name="title" [(ngModel)]="title" #myTitle="ngModel" required minlength="3" maxlength="10"
+  <input type="text"
+    id="title"
+    name="title"
+    [(ngModel)]="title"
+    #myTitle="ngModel"
+    requiredd
+    minlength="3"
+    maxlength="10"
     pattern="^[A-Z]+$" />
   <br />
   <div *ngIf="myTitle.errors?.required">
@@ -24,19 +31,32 @@
 
 <form
   novalidate
-  #myReactiveForm="ngForm"
-  (ngSubmit)="formSubmit(myReactiveForm)"
-  [formGroup]="formGroup">
-  <label for="title">Tytul:</label>
-  <input type="text" id="title" name="title"
-    formControlName="title" />
+  [formGroup]="formGroup"
+  (ngSubmit)="formSubmit()">
+  <label class="one-line">
+    Tytul:
+    <input type="text" formControlName="title" placeholder="Tytul" />
+  </label>
+  <div class="invalid"
+    *ngIf="formGroup.get('title')?.hasError('required')
+     && formGroup.get('title')?.touched">
+      Pole jest wymagane
+  </div>
   <br />
   <label for="email">Adres e-mail:</label>
-  <input type="text" id="email" name="email"
-    formControlName="email" />
+  <input type="text" id="email" formControlName="email2" />
+  <br />
+  <div class="invalid"
+    *ngIf="formGroup.get('email2')?.hasError('required') ||
+    formGroup.get('email2')?.hasError('email')">
+    Email jest nieprawidlowy
+  </div>
+  <label>Czy wysylac:
+    <input type="checkbox" formControlName="toSend" />
+  </label>
   <br />
   <button type="reset">Wyczysc</button>
-  <button type="submit" [disabled]="myReactiveForm.invalid">
+  <button type="submit" [disabled]="formGroup.invalid">
     Wyslij
   </button>
 </form>

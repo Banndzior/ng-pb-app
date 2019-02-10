@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormControl, Validators, FormGroup } from '@angular/forms';
+import {
+  Validators, FormGroup, FormBuilder
+} from '@angular/forms';
 
 @Component({
   selector: 'app-email-editor',
@@ -7,24 +9,41 @@ import { NgForm, FormControl, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./email-editor.component.scss']
 })
 export class EmailEditorComponent implements OnInit {
-  // title: string = '';
+  title = '';
 
-  formGroup: FormGroup = new FormGroup({
-    title: new FormControl('xxx', Validators.required),
-    email: new FormControl('kamil.mijacz@gmail.com', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.email
-    ])
-  });
+  formGroup: FormGroup = null;
 
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    //#region implicit declaration
+    /*this.formGroup = new FormGroup({
+      title: new FormControl('', Validators.required),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ])
+    });*/
+    //#endregion
 
-  ngOnInit() {
+    this.formGroup = fb.group({
+      title: ['', Validators.required],
+      email2: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      toSend: [true]
+    });
   }
 
-  formSubmit(myForm: NgForm) {
-    console.log('formSubmit', myForm);
-    alert(JSON.stringify(myForm.value));
+  ngOnInit() {
+    this.formGroup.get('email2').patchValue('banndzior@gmail.com');
+
+    this.formGroup.valueChanges.subscribe((info) => {
+      console.log(info);
+    });
+  }
+
+  formSubmit() {
+    console.log('formSubmit', this.formGroup);
+    console.log(this.formGroup.value);
   }
 }
