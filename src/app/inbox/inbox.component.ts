@@ -45,7 +45,7 @@ export class InboxComponent implements OnInit {
   }
 
   handleSearchInput(event: KeyboardEvent) {
-    const keyValue = event.key;
+    const keyValue = event.target.value;
     this.filteredMessages = this.inboxMessages.filter(email => email.title.includes(keyValue) || email.content.includes(keyValue));
   }
 }
