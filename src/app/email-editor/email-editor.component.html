@@ -45,18 +45,20 @@
   </button>
 </form> -->
 
-<form novalidate #f="ngForm" (ngSubmit)="formSubmit($event, f)"
-  [formGroup]="formGroup">
+<form novalidate (ngSubmit)="formSubmit($event)" [formGroup]="formGroup">
   <label for="title">Tytul:</label>
   <input name="title" id="title" formControlName="title" />
   <br />
+  <div class="invalid" *ngIf="formGroup.get('title')?.hasError('required')">
+    Pole jest wymagane
+  </div>
   <label for="receiver">Odbiorca:</label>
   <input type="text" name="receiver" formControlName="receiver" />
   <br />
   <button type="reset">
     Reset
   </button>
-  <button type="submit" [disabled]="f.invalid">
+  <button type="submit" [disabled]="formGroup.invalid">
     Save
   </button>
 </form>

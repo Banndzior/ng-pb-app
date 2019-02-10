@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 export class EmailContent {
   constructor(
@@ -15,17 +15,39 @@ export class EmailContent {
   styleUrls: ['./email-editor.component.scss']
 })
 export class EmailEditorComponent implements OnInit {
-  editedEmail: EmailContent = new EmailContent(
-    'przyklad', 'kamil.mijacz@gmail.com', 'tresc');
+  // editedEmail: EmailContent = new EmailContent(
+  //   'przyklad', 'kamil.mijacz@gmail.com', 'tresc');
 
-  formGroup: FormGroup = new FormGroup({
-    title: new FormControl('tytul', Validators.required),
-    receiver: new FormControl('mail@mail.com', Validators.required)
-  });
+  formGroup: FormGroup; /*= new FormGroup({
+    title: new FormControl('tytul', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(10)
+    ]),
+    receiver: new FormControl('mail@mail.com', [
+      Validators.required,
+      Validators.email
+    ])
+  });*/
 
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    this.formGroup = fb.group({
+      title: ['tytul', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(10)
+      ]],
+      receiver: ['mail@mail.com', [
+        Validators.required,
+        Validators.email
+      ]]
+    });
+  }
 
   ngOnInit() {
+    this.formGroup.valueChanges.subscribe((info) => {
+      console.log(info);
+    });
   }
 
   receiverChange(value: string) {
@@ -35,10 +57,14 @@ export class EmailEditorComponent implements OnInit {
     console.log('zmiana', value);
   }
 
-  formSubmit(event: any, myForm: NgForm) {
-    if (myForm.valid) {
-      this.editedEmail = myForm.value;
+  formSubmit(event: any, myForm: NgForm = null) {
+    if (myForm != null && myForm.valid) {
+      // this.editedEmail = myForm.value;
+      console.log(event, myForm);
     }
-    console.log(event, myForm);
+
+    if (this.formGroup.valid) {
+      console.log(<EmailContent>this.formGroup.value);
+    }
   }
 }
