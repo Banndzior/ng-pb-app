@@ -9,7 +9,7 @@ import { EmailAppProperties } from '../properties.enum';
 })
 export class SidebarComponent implements OnInit {
   public inboxTypes: Array<string>;
-  public selected: number;
+  public selected = 0;
 
   // InboxTypeSelected
   @Output()
