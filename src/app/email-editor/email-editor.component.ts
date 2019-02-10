@@ -10,37 +10,54 @@ export class EmailEditorComponent implements OnInit {
   title = '';
   email = '';
 
-  formGroup: FormGroup;
-  // formGroup: FormGroup = new FormGroup({
-  //   title: new FormControl(
-  //     'kamil',
-  //     [
-  //       Validators.required,
-  //       Validators.minLength(3),
-  //       Validators.pattern('^[a-zA-Z]+$')
-  //     ]
-  //   ),
-  //   email: new FormControl(
-  //     '',
-  //     [
-  //       Validators.required,
-  //       Validators.email
-  //     ]
-  //   )
-  // });
+  public get myFormGroup(): FormGroup {
+    return this._myFormGroup;
+  }
+
+  private _myFormGroup: FormGroup;
 
   constructor(fb: FormBuilder) {
-    this.formGroup = fb.group({
-      title: ['kamil', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]]
+    //#region same thing
+    /*this.myFormGroup = new FormGroup({
+      title: new FormControl(
+        'kamil', [
+          Validators.required, Validators.minLength(3),
+          Validators.pattern('^[a-zA-Z]+$')
+      ]),
+      email: new FormControl('', [
+        Validators.required, Validators.email
+      ])
+    });*/
+    //#endregion
+
+    this._myFormGroup = fb.group({
+      title: ['', [
+        Validators.required, Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z]+$')
+      ]],
+      email2: ['', [
+        Validators.required, Validators.email
+      ]],
+      checkbox: [true]
     });
   }
 
   ngOnInit() {
+    this.myFormGroup.get('email2').setValue('banndzior@gmail.com');
+
+    this.myFormGroup.valueChanges.subscribe((info) => {
+      console.log(info);
+    });
   }
 
-  formSubmit(formGroup: FormGroup) {
-    // console.log('formSubmit', myForm);
-    console.log(formGroup.getRawValue());
+  formSubmit() {
+    if (this.myFormGroup.valid) {
+      console.log(this.myFormGroup.value);
+    }
+  }
+
+  isValidField(name: string): boolean {
+    return this.myFormGroup.get(name).invalid
+      && this.myFormGroup.get(name).touched;
   }
 }

@@ -25,25 +25,38 @@
     required />
   <br />
   <button type="reset">Resetuj</button>
-  <button type="submit">
+  <button type="submit" [disabled]="myForm.invalid">
     Wyslij
   </button>
 </form> -->
 
 <form novalidate
-  (ngSubmit)="formSubmit(formGroup)"
-  [formGroup]="formGroup">
-  <label>Tytul:</label>
-  <input name="title" type="text" formControlName="title" />
-  <br />
-  <label>Adres e-mail:</label>
-  <input name="email" type="text" formControlName="email" />
-  <br />
-  <button type="reset">Resetuj</button>
-  <button type="submit">
-    Wyslij
-  </button>
-  <div *ngIf="formGroup.get('title')?.hasError('minlength')">
+  (ngSubmit)="formSubmit()"
+  [formGroup]="myFormGroup">
+  <label>
+      Tytul:
+      <input type="text" formControlName="title" />
+  </label>
+  <div class="invalid" *ngIf="myFormGroup.get('title')?.hasError('minlength')">
       Pole jest za krotkie
   </div>
+  <br />
+  <label>
+      Adres e-mail:
+      <input type="text" formControlName="email2" />
+  </label>
+  <br />
+  <div class="invalid" *ngIf="isValidField('email2')">
+      Nieprawidlowy email
+  </div>
+  <label>
+    Czy wysylac:
+    <input type="checkbox" formControlName="checkbox" />
+  </label>
+  <br />
+  <button type="reset">Resetuj</button>
+  <button type="submit" [disabled]="myFormGroup.invalid">
+    Wyslij
+  </button>
+ 
 </form>
