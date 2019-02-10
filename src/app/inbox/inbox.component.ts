@@ -9,7 +9,7 @@ import { InboxEmailMessage, EmailService } from '../email';
 export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
 
-  showLoadingSpinner: boolean = true;
+  showLoadingSpinner = true;
 
   constructor(
     public emailService: EmailService
@@ -22,8 +22,21 @@ export class InboxComponent implements OnInit {
       console.log('emailService.emailSentEvent', title);
     });
 
+    this.loadMessages();
+
+    this.emailService.refreshEvent.subscribe(() => {
+      this.loadMessages();
+    });
+  }
+
+  private loadMessages() {
+    this.inboxMessages = [];
+    this.showLoadingSpinner = true;
+
     this.emailService.getInboxMessages()
-      .then((result) => this.inboxMessages = result)
-      .finally(() => this.showLoadingSpinner = false)
+      .then((result) => {
+        this.inboxMessages = result;
+      })
+      .finally(() => this.showLoadingSpinner = false);
   }
 }

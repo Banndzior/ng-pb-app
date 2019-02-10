@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailService } from '../email';
 
 @Component({
   selector: 'app-refresh-button',
@@ -7,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RefreshButtonComponent implements OnInit {
 
-  constructor() { }
+  constructor(private emailService: EmailService) { }
 
   ngOnInit() {
   }
 
   refresh() {
-    location.reload();
+    this.emailService.refresh();
+    // location.reload();
   }
-  
 }

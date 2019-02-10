@@ -34,6 +34,8 @@ export class EmailService {
 
     emailSentEvent = new EventEmitter<any>();
 
+    refreshEvent = new EventEmitter<any>();
+
     public sentEmail(title: string, content: string) {
         this.inboxMessages.push(
             new InboxEmailMessage(title, content)
@@ -48,4 +50,7 @@ export class EmailService {
         });
     }
 
+    public refresh() {
+        this.refreshEvent.emit(true);
+    }
 }
