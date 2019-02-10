@@ -14,9 +14,6 @@ export class AllMailComponent implements OnInit, OnChanges, DoCheck, AfterConten
   initialChildEvents: string[];
   continuousChildEvents: string[];
 
-  @Input()
-  filter: string;
-
   @Output()
   childMessage = new EventEmitter<string>();
 

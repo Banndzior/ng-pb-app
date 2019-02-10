@@ -10,20 +10,12 @@ import { InboxEmailMessage, EmailService } from '../email';
 export class MailContentComponent implements OnInit {
   @Input()
   public inboxType: InboxType;
-  filterText: string;
+
   InboxType = InboxType;
 
-  constructor(private emailService: EmailService) { }
+
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  filterSelectedInbox(filterText: any) {
-    this.filterText = filterText;
-    if(this.inboxType === 0) {
-      this.emailService.getInboxMessages(filterText);
-    } else {
-
-    }
   }
 }

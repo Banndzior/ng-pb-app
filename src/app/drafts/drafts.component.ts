@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-drafts',
@@ -6,9 +6,6 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./drafts.component.scss']
 })
 export class DraftsComponent implements OnInit {
-
-  @Input()
-  filter: string;
 
   constructor() { }
 
