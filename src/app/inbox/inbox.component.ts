@@ -12,18 +12,17 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 
 export class InboxComponent implements OnInit {
   inboxMessages: InboxEmailMessage[] = [];
-  filteredMessages:InboxEmailMessage[];
+  filteredMessages: InboxEmailMessage[];
   selectedEmail: InboxEmailMessage;
-  display: boolean = false;
-  
+  display = false;
+
   constructor(
     private emailService: EmailService
-
   ) { }
 
   public toggleAccordian(props: NgbPanelChangeEvent): void {
-    this.selectedEmail = this.inboxMessages[props.panelId]
-    console.log(props.panelId)
+    this.selectedEmail = this.inboxMessages[props.panelId];
+    console.log(props.panelId);
   }
 
   ngOnInit() {
@@ -39,18 +38,14 @@ export class InboxComponent implements OnInit {
       .then((result) => {
         this.inboxMessages = result;
         this.display = false;
-
-    this.selectedEmail = this.inboxMessages[0];
-      }
-      );
-        this.inboxMessages = result; 
+        this.selectedEmail = this.inboxMessages[0];
         return result;
       })
       .then((result) => this.filteredMessages = result);
   }
 
   handleSearchInput(event: KeyboardEvent) {
-    const keyValue = event.target.value;
+    const keyValue = event.key;
     this.filteredMessages = this.inboxMessages.filter(email => email.title.includes(keyValue) || email.content.includes(keyValue));
   }
 }
