@@ -1,0 +1,34 @@
+.compose {
+  &__wrapper {
+    margin: 0.25rem 1.5rem;
+  }
+  &__button {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+/* app-ngx-editor{
+  width: 100%;
+} */
+.ckeditor{
+  min-height: 500px
+ }
+ 
+ .text-tiny {
+   font-size: 0.7em;
+ }
+ 
+ .text-small {
+   font-size: 0.85em;
+ }
+ 
+ .text-big {
+   font-size: 1.4em;
+ }
+ 
+ .text-huge {
+   font-size: 1.8em;
+ }
+ 

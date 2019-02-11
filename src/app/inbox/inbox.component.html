@@ -23,7 +23,10 @@
     <ng-template ngbPanelTitle *ngIf="selectedEmail !== message">
       {{ message.title }}
     </ng-template>
-    <ng-template ngbPanelContent> {{ message.content }} </ng-template>
+    <ng-template ngbPanelContent>
+      <div [innerHTML]="message.content">
+      </div>
+    </ng-template>
   </ngb-panel>
 </ngb-accordion>
   
