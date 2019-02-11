@@ -19,7 +19,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { HttpClientModule } from '@angular/common/http';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CKEditorModule } from 'ng2-ckeditor';
-
+import { SpinnerComponent } from './spinner/spinner.component';
 
 const routes: Routes = [];
 
@@ -33,7 +33,8 @@ const routes: Routes = [];
     DraftsComponent,
     SentComponent,
     AllMailComponent,
-    TextareaComponent
+    TextareaComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { InboxType } from '../inbox-type.enum';
+import { InboxEmailMessage, EmailService } from '../email';
 
 @Component({
   selector: 'app-mail-content',
@@ -11,6 +12,7 @@ export class MailContentComponent implements OnInit {
   public inboxType: InboxType;
 
   InboxType = InboxType;
+
 
   constructor() { }
 
