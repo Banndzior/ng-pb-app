@@ -1,9 +1,5 @@
 <div class="compose__wrapper">
-  <button
-    (click)="newEmailEvent('I\'m new')"
-    type="button"
-    class="btn btn-outline-primary compose__button"
-  >
+  <button (click)="openDialog()" type="button" class="btn btn-outline-primary compose__button">
     compose
   </button>
 </div>
@@ -11,24 +7,18 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title">New message</h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <p><input type="text" [(ngModel)]="title" /></p>
+    <!-- <app-ngx-editor  [config]='editorConfig' [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor> -->
+    <ckeditor class="ckeditor" [config]="ckeConfig" [(ngModel)]="contentText">
+    </ckeditor>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-light"
-      (click)="modal.close('Close click')"
-    >
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
       Close
     </button>
     <button type="button" class="btn btn-danger" (click)="sendMessage(modal)">

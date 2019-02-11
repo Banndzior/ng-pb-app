@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxEditorModule } from 'ngx-editor';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { HttpClientModule } from '@angular/common/http';
+// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import { AppComponent } from './app.component';
 import { TestItemComponent } from './test-item/test-item.component';
@@ -14,12 +19,6 @@ import { SentComponent } from './sent/sent.component';
 import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
 import { ComposeButtonComponent } from './compose-button/compose-button.component';
-import { TextareaComponent } from './textarea/textarea.component';
-import { NgxEditorModule } from 'ngx-editor';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { HttpClientModule } from '@angular/common/http';
-// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { SpinnerComponent } from './spinner/spinner.component';
 
 const routes: Routes = [];
@@ -35,7 +34,6 @@ const routes: Routes = [];
     SentComponent,
     AllMailComponent,
     ComposeButtonComponent,
-    TextareaComponent,
     SpinnerComponent
   ],
   imports: [
