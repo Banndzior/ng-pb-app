@@ -14,6 +14,13 @@ import { SentComponent } from './sent/sent.component';
 import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
 import { ComposeButtonComponent } from './compose-button/compose-button.component';
+import { TextareaComponent } from './textarea/textarea.component';
+import { NgxEditorModule } from 'ngx-editor';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { HttpClientModule } from '@angular/common/http';
+// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 const routes: Routes = [];
 
@@ -27,13 +34,19 @@ const routes: Routes = [];
     DraftsComponent,
     SentComponent,
     AllMailComponent,
-    ComposeButtonComponent
+    ComposeButtonComponent,
+    TextareaComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    NgxEditorModule,
+    TooltipModule.forRoot(),
+    HttpClientModule,
+    CKEditorModule,
   ],
   exports: [RouterModule],
   providers: [
