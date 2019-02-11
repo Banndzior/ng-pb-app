@@ -5,6 +5,8 @@
   </li>
 </ul> -->
 
+<app-refresh class='app-btn-refresh' (myRefresh)='newRefresh()'></app-refresh>
+
 <div class="form-control">
   Search:
   <input type="text" [(ngModel)]="filterText" (keyup)="handleSearchInput($event)"/>

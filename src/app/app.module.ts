@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { RefreshComponent } from './refresh/refresh.component';
 
 const routes: Routes = [];
 
@@ -34,7 +35,8 @@ const routes: Routes = [];
     SentComponent,
     AllMailComponent,
     TextareaComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    RefreshComponent
   ],
   imports: [
     BrowserModule,

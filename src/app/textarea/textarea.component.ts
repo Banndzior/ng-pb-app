@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
@@ -20,7 +20,10 @@ export class TextareaComponent implements OnInit {
 
   ckeConfig;
 Editor = ClassicEditor;
+ee;
 
+@ViewChild('ck')
+ck: ElementRef;
 
 
   constructor() { }

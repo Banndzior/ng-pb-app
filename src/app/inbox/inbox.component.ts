@@ -26,6 +26,22 @@ export class InboxComponent implements OnInit {
     console.log(props.panelId);
   }
 
+  public newRefresh(){
+    this.filteredMessages = []; 
+    console.log(this.inboxMessages);
+    this.emailService.getInboxMessages()
+      .then((result) => {
+        this.inboxMessages = result;
+        this.display = false;
+        this.selectedEmail = this.inboxMessages[0];
+        return result;
+      })
+      .then((result) =>{this.filteredMessages = result
+      console.log(result);
+      });
+    
+  }
+
   ngOnInit() {
     console.log('InboxComponent.ngOnInit()');
 
