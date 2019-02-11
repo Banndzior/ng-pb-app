@@ -7,7 +7,7 @@
 
 <div class="form-control">
   Search:
-  <input type="text" (keyup)="handleSearchInput($event)"/>
+  <input type="text" [(ngModel)]="filterText" (keyup)="handleSearchInput($event)"/>
 </div>
 <br />
 

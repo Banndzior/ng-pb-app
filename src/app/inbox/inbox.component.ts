@@ -15,6 +15,7 @@ export class InboxComponent implements OnInit {
   filteredMessages: InboxEmailMessage[];
   selectedEmail: InboxEmailMessage;
   display = false;
+  filterText = '';
 
   constructor(
     private emailService: EmailService
@@ -45,7 +46,7 @@ export class InboxComponent implements OnInit {
   }
 
   handleSearchInput(event: KeyboardEvent) {
-    const keyValue = event.target.value;
-    this.filteredMessages = this.inboxMessages.filter(email => email.title.includes(keyValue) || email.content.includes(keyValue));
+    this.filteredMessages = this.inboxMessages.filter(email => email.title.includes(this.filterText)
+      || email.content.includes(this.filterText));
   }
 }
