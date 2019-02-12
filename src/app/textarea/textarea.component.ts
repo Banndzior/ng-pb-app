@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
@@ -18,23 +18,32 @@ import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 })
 export class TextareaComponent implements OnInit {
 
-  ckeConfig;
+ckeConfig;
 Editor = ClassicEditor;
-ee;
+editorData;
 
-@ViewChild('ck')
-ck: ElementRef;
+@Output()
+textEditor: EventEmitter<any> = new EventEmitter<any>();
+
+
+public expText(editorData){
+  const eD=editorData;
+  this.textEditor.emit(eD); 
+}
 
 
   constructor() { }
-
 
   ngOnInit() {
     this.ckeConfig = {
       allowedContent: false,
       extraPlugins: 'divarea',
       forcePasteAsPlainText: true
+     
+      
     };
+
+   
   }
 
 }

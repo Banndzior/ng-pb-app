@@ -22,7 +22,7 @@
     <p>
       <input type="text" [(ngModel)]="title" />
     </p>
-    <app-textarea ></app-textarea>
+    <app-textarea (textEditor)="newEditorText($event)"></app-textarea>
   </div>
 
   <div class="modal-footer">

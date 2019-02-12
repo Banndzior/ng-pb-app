@@ -11,7 +11,7 @@ import { EmailService } from './email';
 })
 export class AppComponent {
   public title: string;
-  public content1: string;
+  public textEditor: string;
   public inboxType: InboxType = InboxType.Inbox;
 
   @ViewChild('content')
@@ -28,7 +28,7 @@ export class AppComponent {
     this.inboxType = event;
   }
 
-  public newEmailEvent(title: string,content1) {
+  public newEmailEvent(title: string) {
     console.log('new message', title);
 
     this.title = title;
@@ -37,11 +37,16 @@ export class AppComponent {
     this.modalService.open(this.content, { size: 'lg' });
   }
 
+  public newEditorText(event:string){
+    this.textEditor=event;
+    console.log('text', this.textEditor);
+  }
+  
 
   public sendMessage(modal) {
 
-    this.emailService.sentEmail(this.title,this.content1);
-    console.log('message sent',this.content1);
+    this.emailService.sentEmail(this.title,this.textEditor);
+    console.log('message sent',this.textEditor);
     modal.close();
   }
 }
