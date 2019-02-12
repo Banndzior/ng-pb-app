@@ -20,15 +20,18 @@ export class TextareaComponent implements OnInit {
 
 ckeConfig;
 Editor = ClassicEditor;
-editorData;
+editorData='<p></p>';
 
 @Output()
 textEditor: EventEmitter<any> = new EventEmitter<any>();
 
+@ViewChild('ck')
+  ck: ElementRef;
+
 
 public expText(editorData){
   const eD=editorData;
-  this.textEditor.emit(eD); 
+  this.textEditor.emit(eD);  
 }
 
 
@@ -42,8 +45,6 @@ public expText(editorData){
      
       
     };
-
-   
   }
 
 }
