@@ -11,28 +11,3 @@
   </div>
 </div>
 
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">New message</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="col-md-12">
-      <input type="text" [(ngModel)]="title" />
-    </div>
-    <br/>
-    <div class="col-md-12">
-    <!-- https://www.npmjs.com/package/ngx-editor
-    https://stackoverflow.com/questions/38796541/how-to-add-font-awesome-to-angular-2-cli-project -->
-    <app-ngx-editor [placeholder]="'Type in content...'" [spellcheck]="true" [(ngModel)]="mailContent"></app-ngx-editor>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light"
-      (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-danger"
-      (click)="sendMessage(modal)">Send</button>
-  </div>
-</ng-template>

@@ -1,0 +1,67 @@
+
+    <div class="modal-header">
+      <h4 class="modal-title">New message</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="form-group">
+              <label for="title">Title</label>
+              <input 
+                [placeholder]="'Type in title...'" 
+                formControlName="title"
+                id="title"
+                type="text"
+                class="form-control" />
+              <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+                <div *ngIf="title.errors?.required">Title is required</div>
+                <div *ngIf="title.errors?.maxlength">Maximum {{ title.errors.maxlength.requiredLength }} characters allowed</div>
+                <div *ngIf="title.errors?.pattern">Only letters are allowed</div>
+              </div>
+          </div>
+          <br/>
+          <div class="form-group">
+                <label for="receiver">Receiver</label>
+                <input 
+                  [typeahead]="receivers"
+                  [typeaheadOptionsLimit]="7"
+                  [typeaheadMinLength]="0"
+                  [placeholder]="'Type in receiver...'" 
+                  formControlName="receiver"
+                  id="receiver"
+                  type="text"
+                  class="form-control" />
+                  <div *ngIf="receiver.touched && receiver.invalid" class="alert alert-danger">
+                      <div *ngIf="receiver.errors?.required">Receiver is required</div>
+                      <div *ngIf="receiver.errors?.email">Only valid email format is allowed</div>
+                  </div>
+          </div>
+          <br/>
+          <div class="form-group">
+            <!-- https://www.npmjs.com/package/ngx-editor
+            https://stackoverflow.com/questions/38796541/how-to-add-font-awesome-to-angular-2-cli-project -->
+            <label for="mailContent">Content</label>
+            <app-ngx-editor [placeholder]="'Type in content...'" 
+              [spellcheck]="true" 
+              formControlName="mailContent"
+              id="mailContent"
+              type="text"
+              minHeight="50"
+              class="form-control">              
+            </app-ngx-editor>
+            <div *ngIf="mailContent.touched && mailContent.invalid" class="alert alert-danger">
+                <div *ngIf="mailContent.errors?.maxlength">Maximum {{ mailContent.errors.maxlength.requiredLength }} characters allowed</div>
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light"
+        (click)="activeModal.close()">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="!form.touched"
+        (click)="reset()">Reset</button>
+      <button type="button" class="btn btn-danger" [disabled]="!form.valid"
+        (click)="sendMessage()">Send</button>
+    </div>
