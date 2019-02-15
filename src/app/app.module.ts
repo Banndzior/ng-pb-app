@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AppComponent } from './app.component';
 import { TestItemComponent } from './test-item/test-item.component';
@@ -17,6 +18,7 @@ import { EmailService } from './email';
 import { NgxEditorModule } from 'ngx-editor';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
+import { FormModalComponent } from './form-modal/form-modal.component';
 
 const routes: Routes = [];
 
@@ -29,21 +31,27 @@ const routes: Routes = [];
     InboxComponent,
     DraftsComponent,
     SentComponent,
-    AllMailComponent
+    AllMailComponent,
+    FormModalComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     NgxEditorModule,
     AngularFontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    TypeaheadModule.forRoot()
   ],
   exports: [RouterModule],
   providers: [
     EmailService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    FormModalComponent
+  ]
 })
 export class AppModule { }

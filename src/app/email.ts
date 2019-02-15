@@ -9,6 +9,7 @@ export interface IEmailMessage {
 export class InboxEmailMessage implements IEmailMessage {
     constructor(
         public title: string,
+        public receiver: string,
         public content: string
     ) { }
 
@@ -26,17 +27,17 @@ export class DraftEmailMessage implements IEmailMessage {
 @Injectable()
 export class EmailService {
     inboxMessages: InboxEmailMessage[] = [
-        new InboxEmailMessage('tytul1', 'tresc1'),
-        new InboxEmailMessage('tytul2', 'tresc2'),
-        new InboxEmailMessage('tytul3', 'tresc3'),
-        new InboxEmailMessage('tytul4', 'tresc4')
+        new InboxEmailMessage('tytul1', 'odbiorca1', 'tresc1'),
+        new InboxEmailMessage('tytul2', 'odbiorca2', 'tresc2'),
+        new InboxEmailMessage('tytul3', 'odbiorca3', 'tresc3'),
+        new InboxEmailMessage('tytul4', 'odbiorca4', 'tresc4')
     ];
 
     emailSentEvent = new EventEmitter<any>();
 
-    public sentEmail(title: string, content: string) {
+    public sentEmail(title: string, receiver: string, content: string) {
         this.inboxMessages.push(
-            new InboxEmailMessage(title, content)
+            new InboxEmailMessage(title, receiver, content)
         );
         this.emailSentEvent.emit(title);
     }
