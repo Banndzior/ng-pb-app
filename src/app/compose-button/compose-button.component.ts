@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 import { EmailService } from '../email';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -56,9 +57,9 @@ export class ComposeButtonComponent implements OnInit {
     this.modalService.open(this.dialogContent, { size: 'lg' });
   }
 
-  sendMessage(modal) {
-    this.emailService.sentEmail(this.title, this.contentText);
-    console.log('message sent');
+  submit(form, modal) : void {
+    const {title, contentText} = form.value;
+    this.emailService.sentEmail(title, contentText);
     modal.close();
   }
 }

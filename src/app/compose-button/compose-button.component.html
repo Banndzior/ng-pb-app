@@ -5,24 +5,31 @@
 </div>
 
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">New message</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p><input type="text" [(ngModel)]="title" /></p>
-    <!-- <app-ngx-editor  [config]='editorConfig' [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor> -->
-    <ckeditor class="ckeditor" [config]="ckeConfig" [(ngModel)]="contentText">
-    </ckeditor>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-      Close
-    </button>
-    <button type="button" class="btn btn-danger" (click)="sendMessage(modal)">
-      Send
-    </button>
-  </div>
+  <form #emailForm="ngForm" (ngSubmit)="submit(emailForm, modal)">
+    <div class="modal-header">
+      <h4 class="modal-title">New message</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p><input type="text" name="title" ngModel required/></p>
+      <div [hidden]="emailForm.controls['title']?.valid || emailForm.controls['title']?.pristine" class="alert alert-danger">
+        Tytuł jest wymagany
+      </div>
+      <!-- <app-ngx-editor  [config]='editorConfig' [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor> -->
+    <ckeditor class="ckeditor" [config]="ckeConfig" name="contentText" ngModel required></ckeditor>
+    <div [hidden]="emailForm.controls['contentText']?.valid || emailForm.controls['contentText']?.pristine" class="alert alert-danger">
+        Treść jest wymagana
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+        Close
+      </button>
+      <button [disabled]="emailForm.invalid" type="submit" class="btn btn-danger" >
+        Send
+      </button>
+    </div>
+  </form>
 </ng-template>
