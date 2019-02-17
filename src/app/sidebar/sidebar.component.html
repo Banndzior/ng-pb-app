@@ -1,5 +1,6 @@
 <nav class="toc">
   <h3>sidebar</h3>
+  <app-sendemail></app-sendemail>
   <ul class="nav flex-column">
     <li *ngFor="let item of inboxTypes; let i=index" class="toc-item">
       <a href="#" (click)="selectInboxType(i)" class="toc-link">{{ item }}</a>

@@ -1,7 +1,48 @@
-
 <div class="toc-item">
   <button (click)="composeEmail()" type="button" class="btn btn-outline-primary send-btn">New massage</button>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">New message</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <form #modalForm="ngForm">
+      <label for="title">Title</label>
+      <input class="form-control" type="text" id="title" name="title" maxlength="500" required pattern="[a-zA-Z ]*" ngModel #formTitle="ngModel">
+      <div *ngIf="formTitle.invalid && formTitle.touched">
+        <p class="badge badge-danger" *ngIf="formTitle.errors.required">This field is required!</p>
+        <p class="badge badge-danger" *ngIf="formTitle.errors.pattern">Only letters are valid!</p>
+        <p class="badge badge-danger" *ngIf="formTitle.errors.maxlength">Max 500 title length!</p>
+      </div>
+      <label for="email">Email</label>
+      <input class="form-control" type="email" id="email" name="email" required email [typeahead]="emails" #formEmail="ngModel" ngModel>
+        <div *ngIf="formEmail.invalid && formEmail.touched">
+          <p class="badge badge-danger" *ngIf="formEmail.errors.required">This field is required!</p>
+          <p class="badge badge-danger" *ngIf="formEmail.errors.email">This is not a valid email!</p>
+        </div>
+      <label for="message">Message</label>
+      <textarea class="form-control" type="text" id="message" name="message" rows="6" maxlength="1000" required ngModel #formMessage="ngModel"></textarea>
+        <div *ngIf="formMessage.invalid && formMessage.touched">
+          <p class="badge badge-danger" *ngIf="formMessage.errors.required">This field is required!</p>
+          <p class="badge badge-danger" *ngIf="formMessage.errors.maxlength">Max 1000 title length!</p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger"
+            (click)="modal.close('Close click')">Cancel</button>
+    <button type="submit" class="btn btn-danger"
+            (click)="onSubmit(modalForm, modal)" [disabled]="(!modalForm.valid || !modalForm.touched)">Send</button>
+    <button type="button" class="btn btn-danger"
+            (click)="resetMessage(modalForm)" [disabled]="!modalForm.touched">Reset</button>
+  </div>
+</ng-template>
 
 
 
