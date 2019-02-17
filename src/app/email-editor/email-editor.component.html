@@ -1,0 +1,37 @@
+<form novalidate
+      (ngSubmit)="formSubmit(formGroup)"
+      [formGroup]="formGroup">
+  <label>Tytul:
+  <input name="title" type="text" formControlName="title" />
+  </label>
+  <br />
+  <label>Adres e-mail:
+  <input name="email" type="text" formControlName="email" [typeahead]="emails" autocomplete="off"/>
+  </label>
+  <br />
+  <label>
+    <angular-editor placeholder="'Wpisz treść e-maila'"  formControlName="message"></angular-editor>
+  </label>
+
+  <div *ngIf="formGroup.get('title')?.hasError('minlength') " class="badge badge-danger">
+    Pole jest za krotkie
+  </div>
+  <div *ngIf="formGroup.get('title')?.hasError('maxlength')" class="badge badge-danger">
+    Pole moze miec max 500znaków
+  </div>
+  <div *ngIf="formGroup.get('title')?.hasError('pattern')" class="badge badge-danger">
+  Pole może zawierać tylko litery
+  </div>
+  <div *ngIf="formGroup.get('email')?.hasError('email')" class="badge badge-danger">
+    Wpisz poprawny adres e-mail
+  </div>
+  <div *ngIf="formGroup.get('message')?.hasError('maxlength')" class="badge badge-danger">
+    Pole moze miec max 1000znaków
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light"
+            (click)="modal.dismissAll('Close click')">Close</button>
+    <button [disabled]="!formGroup.touched" type="reset" class="btn btn-light">Reset</button>
+    <button [disabled]="formGroup.invalid || !formGroup.touched" type="submit" class="btn btn-danger">Send</button>
+  </div>
+</form>

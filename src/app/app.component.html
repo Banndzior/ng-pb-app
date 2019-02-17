@@ -22,13 +22,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <p><input type="text" [(ngModel)]="title" /></p>
-    <p><angular-editor placeholder="'Wpisz treść e-maila'" [(ngModel)]="message"></angular-editor></p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light"
-      (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-danger"
-      (click)="sendMessage(modal)">Send</button>
+    <app-email-editor></app-email-editor>
   </div>
 </ng-template>
