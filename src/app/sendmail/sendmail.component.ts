@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-email',
+  selector: 'app-sendemail',
   templateUrl: './sendmail.component.html',
   styleUrls: ['./sendmail.component.scss']
 })
@@ -16,5 +16,7 @@ export class SendmailComponent implements OnInit {
   composeEmail() {
     this.newEmail.emit('i\'m new');
   }
+
+
 
 }
