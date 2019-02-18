@@ -27,6 +27,10 @@
               [typeahead]="states"
               />
             </label>
+            <div class="badge badge-danger invalid"
+                *ngIf="formGroup.get('recipient')?.hasError('required') && formGroup.get('recipient')?.touched">
+                Odbiorca jest wymagany!
+            </div>
           </div>
             <div class="col-md-6">
               <label >
