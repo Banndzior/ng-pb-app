@@ -4,25 +4,77 @@
   </button>
 </div>
 
+
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">New message</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p><input type="text" [(ngModel)]="title" /></p>
-    <!-- <app-ngx-editor  [config]='editorConfig' [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor> -->
-    <ckeditor class="ckeditor" [config]="ckeConfig" [(ngModel)]="contentText">
-    </ckeditor>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-      Close
-    </button>
-    <button type="button" class="btn btn-danger" (click)="sendMessage(modal)">
-      Send
-    </button>
-  </div>
+    <form
+    method="POST"
+    novalidate
+    [formGroup]="formGroup"
+    (ngSubmit)="formSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title">New message</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+          <div class="col-md-6">
+          <label>
+              Odbiorca:
+              <input type="text" 
+              formControlName="recipient" 
+              [typeahead]="states"
+              />
+            </label>
+          </div>
+            <div class="col-md-6">
+              <label >
+                Tytuł wiadomości:
+                <input type="text" 
+                formControlName="title" 
+                />
+              </label>
+              <div 
+              class="badge badge-danger invalid"
+                *ngIf="formGroup.controls['title']?.hasError('maxlength')">
+                Maksymalna długość tytułu to 500 znaków!
+              </div>
+              <div class="badge badge-danger invalid"
+                *ngIf="formGroup.get('title')?.hasError('required') && formGroup.get('title')?.touched">
+                Tytuł jest wymagany!
+              </div>
+              <div class="badge badge-danger invalid"
+                *ngIf="formGroup.get('title')?.hasError('pattern')">
+                Tytuł może zawierać tylko litery!
+              </div>
+
+            </div>
+            
+      </div>
+
+      <!-- <app-ngx-editor  [config]='editorConfig' [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor> -->
+      <label>
+        Treść wiadomości: 
+        <ckeditor class="ckeditor" [config]="ckeConfig"  formControlName="contentText" ></ckeditor>
+      </label>
+      <div class="badge badge-danger invalid"
+          *ngIf="formGroup.controls['contentText']?.hasError('maxlength')">
+          Maksymalna długość treści to 1000 znaków!
+      </div>
+      <div class="badge badge-danger invalid"
+        *ngIf="formGroup.get('contentText')?.hasError('required') && formGroup.get('contentText')?.touched">
+        Treść jest wymagana!
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-light" (click)="formReset()" [disabled]="formGroup.pristine" >Wyczysc</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">
+        Close
+      </button>
+      <button type="submit" [disabled]="formGroup.invalid" class="btn btn-success" (click)="formSubmit(modal)">
+        Send
+      </button>
+    </div>
+  </form>
 </ng-template>

@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { NgxEditorModule } from 'ngx-editor';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { AllMailComponent } from './all-mail/all-mail.component';
 import { EmailService } from './email';
 import { ComposeButtonComponent } from './compose-button/compose-button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [];
 
@@ -34,7 +35,7 @@ const routes: Routes = [];
     SentComponent,
     AllMailComponent,
     ComposeButtonComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +46,8 @@ const routes: Routes = [];
     TooltipModule.forRoot(),
     HttpClientModule,
     CKEditorModule,
+    ReactiveFormsModule,
+    TypeaheadModule.forRoot(),
   ],
   exports: [RouterModule],
   providers: [
