@@ -1,34 +1,46 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
+export interface IEmailMessage {
+  recipient: string;
+  title: string;
+  content: string;
+  send();
+}
 
-export class InboxEmailMessage {
-  public test: string;
-  constructor(public title: string, public content: string) {}
+export class InboxEmailMessage implements IEmailMessage {
+  constructor(public recipient: string, public title: string, public content: string) {}
+
+  send() {}
+}
+
+export class DraftEmailMessage implements IEmailMessage {
+  public recipient: string;
+  public title: string;
+  public content: string;
+  isSent: boolean;
+
+  send() {}
 }
 
 @Injectable()
 export class EmailService {
-  private inboxMessages: InboxEmailMessage[] = [
-    new InboxEmailMessage('tytul 1', 'tresc 1'),
-    new InboxEmailMessage('tytul 2', 'tresc 2'),
-    new InboxEmailMessage('tytul 3', 'tresc 3'),
-    {
-      title: 'tytul 4',
-      content: 'tresc 3',
-      test: 'test'
-    }
+  inboxMessages: InboxEmailMessage[] = [
+    new InboxEmailMessage('email1', 'tytul1', 'tresc1'),
+    new InboxEmailMessage('email2', 'tytul2', 'tresc2'),
+    new InboxEmailMessage('email3', 'tytul3', 'tresc3'),
+    new InboxEmailMessage('email4', 'tytul4', 'tresc4')
   ];
 
-  public sendMessage(title: string, content: string) {
-    this.inboxMessages.push(new InboxEmailMessage(title, content));
+  emailSentEvent = new EventEmitter<any>();
+
+  public sentEmail(recipient: string, title: string, content: string) {
+    this.inboxMessages.push(new InboxEmailMessage(recipient, title, content));
+    this.emailSentEvent.emit(title);
   }
 
-  public getMessages(): Promise<InboxEmailMessage[]> {
-    // return Promise.resolve(this.inboxMessages);
+  public getInboxMessages(): Promise<InboxEmailMessage[]> {
     return new Promise<InboxEmailMessage[]>(resolve => {
-      setTimeout(resolve, 500, this.inboxMessages);
-      // setTimeout(() => resolve(this.inboxMessages), 3000);
-      // resolve(this.inboxMessages);
+      setTimeout(() => resolve(this.inboxMessages), 1000);
     });
   }
 }

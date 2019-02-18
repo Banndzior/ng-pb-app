@@ -1,51 +1,46 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 
 export interface IEmailMessage {
-    title: string;
-    content: string;
-    send();
+  recipient: string;
+  title: string;
+  content: string;
+  send();
 }
 
 export class InboxEmailMessage implements IEmailMessage {
-    constructor(
-        public title: string,
-        public content: string
-    ) { }
+  constructor(public recipient: string, public title: string, public content: string) {}
 
-    send() { }
+  send() {}
 }
 
 export class DraftEmailMessage implements IEmailMessage {
-    public title: string;
-    public content: string;
-    isSent: boolean;
+  public recipient: string;
+  public title: string;
+  public content: string;
+  isSent: boolean;
 
-    send() { }
+  send() {}
 }
 
 @Injectable()
 export class EmailService {
-    inboxMessages: InboxEmailMessage[] = [
-        new InboxEmailMessage('tytul1', 'tresc1'),
-        new InboxEmailMessage('tytul2', 'tresc2'),
-        new InboxEmailMessage('tytul3', 'tresc3'),
-        new InboxEmailMessage('tytul4', 'tresc4')
-    ];
+  inboxMessages: InboxEmailMessage[] = [
+    new InboxEmailMessage('email1@pl', 'tytul1', 'tresc1'),
+    new InboxEmailMessage('email2@pl', 'tytul2', 'tresc2'),
+    new InboxEmailMessage('email3@pl', 'tytul3', 'tresc3'),
+    new InboxEmailMessage('email4@pl', 'tytul4', 'tresc4')
+  ];
 
-    emailSentEvent = new EventEmitter<any>();
+  emailSentEvent = new EventEmitter<any>();
 
-    public sentEmail(title: string, content: string) {
-        this.inboxMessages.push(
-            new InboxEmailMessage(title, content)
-        );
-        this.emailSentEvent.emit(title);
-    }
+  public sentEmail(recipient: string, title: string, content: string) {
+    this.inboxMessages.push(new InboxEmailMessage(recipient, title, content));
+    this.emailSentEvent.emit(title);
+  }
 
-    public getInboxMessages():
-        Promise<InboxEmailMessage[]> {
-        return new Promise<InboxEmailMessage[]>((resolve) => {
-            setTimeout(() => resolve(this.inboxMessages), 1000);
-        });
-    }
-
+  public getInboxMessages(): Promise<InboxEmailMessage[]> {
+    return new Promise<InboxEmailMessage[]>(resolve => {
+      setTimeout(() => resolve(this.inboxMessages), 1000);
+    });
+  }
 }

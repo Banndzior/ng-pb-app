@@ -11,19 +11,18 @@ export class InboxComponent implements OnInit {
 
   showLoadingSpinner: boolean = true;
 
-  constructor(
-    public emailService: EmailService
-  ) { }
+  constructor(public emailService: EmailService) {}
 
   ngOnInit() {
     console.log('InboxComponent.ngOnInit()');
 
-    this.emailService.emailSentEvent.subscribe((title) => {
+    this.emailService.emailSentEvent.subscribe(title => {
       console.log('emailService.emailSentEvent', title);
     });
 
-    this.emailService.getInboxMessages()
-      .then((result) => this.inboxMessages = result)
-      .finally(() => this.showLoadingSpinner = false)
+    this.emailService
+      .getInboxMessages()
+      .then(result => (this.inboxMessages = result))
+      .finally(() => (this.showLoadingSpinner = false));
   }
 }

@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TestItemComponent } from './test-item/test-item.component';
@@ -18,6 +19,8 @@ import { EmailService } from './email';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { SendmailComponent } from './sendmail/sendmail.component';
 import { RefreshButtonComponent } from './refresh-button/refresh-button.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { FormEmailComponent } from './form-email/form-email.component';
 
 const routes: Routes = [];
 
@@ -33,7 +36,8 @@ const routes: Routes = [];
     AllMailComponent,
     SendmailComponent,
     LoadingSpinnerComponent,
-    RefreshButtonComponent
+    RefreshButtonComponent,
+    FormEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -41,12 +45,13 @@ const routes: Routes = [];
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    ReactiveFormsModule,
+    TypeaheadModule.forRoot()
   ],
   exports: [RouterModule],
-  providers: [
-    EmailService
-  ],
-  bootstrap: [AppComponent]
+  providers: [EmailService],
+  bootstrap: [AppComponent],
+  entryComponents: [FormEmailComponent]
 })
-export class AppModule { }
+export class AppModule {}
