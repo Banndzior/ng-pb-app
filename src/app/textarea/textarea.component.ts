@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
@@ -22,11 +22,12 @@ ckeConfig;
 Editor = ClassicEditor;
 editorData='<p></p>';
 
+
+
 @Output()
 textEditor: EventEmitter<any> = new EventEmitter<any>();
 
-@ViewChild('ck')
-  ck: ElementRef;
+
 
 
 public expText(editorData){
@@ -34,6 +35,9 @@ public expText(editorData){
   this.textEditor.emit(eD);  
 }
 
+clText(){
+  this.editorData='';
+}
 
   constructor() { }
 
@@ -41,10 +45,10 @@ public expText(editorData){
     this.ckeConfig = {
       allowedContent: false,
       extraPlugins: 'divarea',
-      forcePasteAsPlainText: true
-     
+      forcePasteAsPlainText: false,
       
     };
   }
+ 
 
 }

@@ -17,10 +17,12 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { HttpClientModule } from '@angular/common/http';
-// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { RefreshComponent } from './refresh/refresh.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+
 
 const routes: Routes = [];
 
@@ -36,7 +38,8 @@ const routes: Routes = [];
     AllMailComponent,
     TextareaComponent,
     SpinnerComponent,
-    RefreshComponent
+    RefreshComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,8 @@ const routes: Routes = [];
     TooltipModule.forRoot(),
     HttpClientModule,
     CKEditorModule,
+    ReactiveFormsModule,
+    TypeaheadModule.forRoot(),
   ],
   exports: [RouterModule],
   providers: [

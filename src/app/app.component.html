@@ -7,28 +7,94 @@
       <app-mail-content [inboxType]="inboxType"></app-mail-content>
       <!-- <app-test-item></app-test-item> -->
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet ></router-outlet>
   </div>
 </div>
 
-<ng-template #content let-modal>
+
+
+
+
+<ng-template #content    let-modal>
   <div class="modal-header">
     <h4 class="modal-title">New message</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <p>
-      <input type="text" [(ngModel)]="title" />
-    </p>
-    <app-textarea (textEditor)="newEditorText($event)"></app-textarea>
-  </div>
+  <div class="modal-body" >
+      <Form  #form="ngForm" [formGroup]="mailForm" (ngSubmit)="sendMessage(modal)" id='formm'>
+          <label class="label-inline">
+            Tytuł:
+            <input type="text"  class="form-inp1 form-control"
+            formControlName="inp1" />
+
+
+            <div *ngIf="mailForm.controls['inp1'].errors && mailForm.controls['inp1'].errors.pattern &&
+            mailForm.controls['inp1'].touched">
+             <span class="badge badge-warning">Pole powinno zawierać litery!</span> 
+            </div>
+
+            <div *ngIf="mailForm.controls['inp1'].errors && mailForm.controls['inp1'].errors.required &&
+            mailForm.controls['inp1'].touched">
+             <span class="badge badge-warning">Pole wymagane!</span> 
+            </div>
+
+            <div *ngIf="mailForm.controls['inp1'].errors && mailForm.controls['inp1'].errors.maxlength &&
+             !mailForm.controls['inp1'].touched">
+            <span class="badge badge-warning">Za długi tytuł!</span> 
+           </div>
+
+          </label>
+          <label class="label-inline">
+              Odbiorca:
+              <input type="text" class="form-inp1 form-control" [typeahead]="mailList"
+              [typeaheadItemTemplate]="customItemTemplate" formControlName="inp2" >
+            </label>
+
+            <label class="label-inline">
+              E-mail:
+              <input type="text"  class="form-inp1 form-control" formControlName="inp3">
+
+            <div *ngIf="mailForm.controls['inp3'].errors && mailForm.controls['inp3'].errors.pattern &&
+              mailForm.controls['inp3'].touched"
+             >
+             <span class="badge badge-warning">Mail powinien zawierać '@'!</span>
+            </div>
+
+
+            <div *ngIf="mailForm.controls['inp3'].errors && mailForm.controls['inp3'].errors.required &&
+            mailForm.controls['inp3'].touched" >
+             <span class="badge badge-warning">Pole wymagane!</span>
+            </div>
+            
+            </label>
+
+            <label>
+                Treść:
+                <app-textarea #clearText (textEditor)="newEditorText($event)" (keyup)="copy($event)"></app-textarea>
+                <input class='noun' type="text" formControlName="inp4">
+
+            <div *ngIf="mailForm.controls['inp4'].errors && mailForm.controls['inp4'].errors.maxlength ">
+             <span class="badge badge-warning">Za długa treść!</span> 
+           </div>
+
+              </label>
+        </Form>
+   </div> 
+
+<div class='noun' [innerHtml]=textEditor id=tE></div>
+
 
   <div class="modal-footer">
+      <button type="button" class='btn btn-outline-secondary' (click)="reset()" (click)="clearText.clText()"
+      [ngClass]="resetClass()" 
+       >Reset</button>
+
     <button type="button" class="btn btn-light"
       (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-danger"
-      (click)="sendMessage(modal)">Send</button>
+
+    <button type="button"  [ngClass]="klasa()"
+      (click)="form.onSubmit()">Send</button>
   </div>
 </ng-template>

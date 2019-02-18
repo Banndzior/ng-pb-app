@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
 
   // nowy mail
   composeEmail() {
-    this.newEmail.emit('i\'m new');
+    this.newEmail.emit('');
   }
 
   // wybor skrzynki
