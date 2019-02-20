@@ -1,0 +1,54 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">New message</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <form [formGroup]="emailSendForm" (ngSubmit)="submitForm(emailSendForm)">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="recipient">Recipient</label>
+        <input type="text" class="form-control" formControlName="recipient" [typeahead]="recipients" />
+      </div>
+      <div *ngIf="recipient.touched && recipient.invalid" class="badge badge-danger">
+        <div *ngIf="recipient.errors?.required">Recipient is required</div>
+        <div *ngIf="recipient.errors?.email">Recipient is invalid</div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" placeholder="{{ titlePlaceholder }}" class="form-control" formControlName="title" />
+      </div>
+      <div *ngIf="title.touched && title.invalid" class="badge badge-danger">
+        <div *ngIf="title.errors?.required">Title is required</div>
+        <div *ngIf="title.errors?.pattern">Title must contain only letters</div>
+        <div *ngIf="title.errors?.maxlength">Title cannot contain more than 500 characters</div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <angular-editor formControlName="message" > </angular-editor>
+      </div>
+
+      <div *ngIf="message.errors?.maxlength" class="badge badge-danger">
+        Field cannot contain more than 1000 characters
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="closeModal()">Close</button>
+      <button type="reset" class="btn btn-info" [disabled]="!(message.dirty || title.dirty || recipient.dirty)">
+        Reset
+      </button>
+      <button
+        type="submit"
+        class="btn btn-danger"
+        (keyup.Tab)="submitForm(emailSendForm)"
+        [disabled]="!emailSendForm.valid">
+        Send
+      </button>
+    </div>
+  </form>
+</div>
