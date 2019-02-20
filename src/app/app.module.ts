@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,6 +17,9 @@ import { EmailService } from './email';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { SendmailComponent } from './sendmail/sendmail.component';
 import { RefreshButtonComponent } from './refresh-button/refresh-button.component';
+import { EmailFormComponent } from './email-form/email-form.component';
+import {TypeaheadModule} from 'ngx-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [];
 
@@ -33,12 +35,15 @@ const routes: Routes = [];
     AllMailComponent,
     SendmailComponent,
     LoadingSpinnerComponent,
-    RefreshButtonComponent
+    RefreshButtonComponent,
+    EmailFormComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
+    TypeaheadModule.forRoot(),
     NgbModule.forRoot(),
     HttpClientModule,
     AngularEditorModule
@@ -47,6 +52,7 @@ const routes: Routes = [];
   providers: [
     EmailService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EmailFormComponent]
 })
 export class AppModule { }

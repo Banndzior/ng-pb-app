@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { InboxType } from './inbox-type.enum';
 import { EmailService } from './email';
+import {EmailFormComponent} from './email-form/email-form.component';
 
 @Component({
   selector: 'app-root',
@@ -31,11 +32,8 @@ export class AppComponent {
 
     this.title = event.title;
     this.message = event.message;
-    this.modalService.open(this.content, { size: 'lg' });
+    // this.modalService.open(this.content, { size: 'lg' });
+    this.modalService.open(EmailFormComponent, { size: 'lg' });
   }
 
-  public sendMessage() {
-    this.emailService.sentEmail(this.title, this.message);
-    this.modalService.dismissAll();
-  }
 }
