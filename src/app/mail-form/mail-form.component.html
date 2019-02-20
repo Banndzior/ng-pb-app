@@ -13,9 +13,6 @@
       <div *ngIf="recipient.invalid && recipient.touched">
         <span *ngIf="recipient.errors.required" class="badge badge-danger">Wpisz adres e-mail odbiorcy!</span>
       </div>
-      <!-- <div [hidden]="recipient.valid || recipient.untouched" class="alert alert-danger">
-        Wpisz adres e-mail odbiorcy!
-      </div> -->
     </div>
 
     <div class="form-group">
@@ -26,9 +23,6 @@
         <span *ngIf="title.errors.pattern" class="badge badge-danger">Tytuł może zawierać jedynie litery i spacje!</span>
         <span *ngIf="title.errors.maxlength" class="badge badge-danger">Tytuł może zawierać jedynie do 500 znaków!</span>
       </div>
-      <!-- <div [hidden]="title.valid || title.untouched" class="alert alert-danger">
-          Wpisz tytuł e-mail!
-      </div> -->
     </div>
 
     <div class="form-group">
@@ -40,8 +34,6 @@
       (click)="emailForm.reset()">Clear</button>
     <button type="button" class="btn btn-danger"
       (click)="activeModal.close()">Close</button>
-    <!-- <button type="button" class="btn btn-danger"
-      (click)="sendMessage()">Send</button> -->
     <button type="submit" class="btn btn-success" [disabled]="!emailForm.form.valid">Submit</button>
   </div>
 
