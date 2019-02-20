@@ -18,6 +18,7 @@ import { EmailService } from './email';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { SendmailComponent } from './sendmail/sendmail.component';
 import { RefreshButtonComponent } from './refresh-button/refresh-button.component';
+import { MailFormComponent } from './mail-form/mail-form.component';
 
 const routes: Routes = [];
 
@@ -33,7 +34,8 @@ const routes: Routes = [];
     AllMailComponent,
     SendmailComponent,
     LoadingSpinnerComponent,
-    RefreshButtonComponent
+    RefreshButtonComponent,
+    MailFormComponent
   ],
   imports: [
     BrowserModule,
