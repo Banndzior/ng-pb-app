@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AppComponent } from './app.component';
 import { TestItemComponent } from './test-item/test-item.component';
@@ -18,6 +19,7 @@ import { EmailService } from './email';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { SendmailComponent } from './sendmail/sendmail.component';
 import { RefreshButtonComponent } from './refresh-button/refresh-button.component';
+import { MailFormComponent } from './mail-form/mail-form.component';
 
 const routes: Routes = [];
 
@@ -33,7 +35,8 @@ const routes: Routes = [];
     AllMailComponent,
     SendmailComponent,
     LoadingSpinnerComponent,
-    RefreshButtonComponent
+    RefreshButtonComponent,
+    MailFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,12 +44,14 @@ const routes: Routes = [];
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    TypeaheadModule.forRoot(),
   ],
   exports: [RouterModule],
   providers: [
     EmailService
   ],
+  entryComponents: [MailFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
