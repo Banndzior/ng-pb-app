@@ -5,6 +5,7 @@ import { InboxType } from './inbox-type.enum';
 import { EmailService } from './email';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { document } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +23,7 @@ export class AppComponent implements OnInit{
   public content: ElementRef;
 
 
-  @ViewChild('form')
-  public form: ElementRef;
+  
 
  
 
@@ -31,9 +31,15 @@ export class AppComponent implements OnInit{
   constructor(
     private modalService: NgbModal,
     private emailService: EmailService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) { 
-  
+  document.addEventListener('keydown',(e)=>{
+    let bt =document.getElementById('bt') ;
+   if(e.key==="Tab" && bt){
+    
+     bt.click()
+   }
+  })
   }
 
   mailList: string[] = [
@@ -53,6 +59,8 @@ export class AppComponent implements OnInit{
     'inp4':[null, Validators.compose([Validators.required,
         Validators.maxLength(1000)])],   
   })
+
+  
 
   
 
