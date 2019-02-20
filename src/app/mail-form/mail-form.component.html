@@ -1,3 +1,48 @@
-<p>
-  mail-form works!
-</p>
+<form (ngSubmit)="sendMessage()" #emailForm="ngForm">
+
+  <div class="modal-header">
+    <h4 class="modal-title">New message</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="recipient">Adres e-mail odbiorcy</label>
+      <input type="text" id="recipient" name="recipient" required [(ngModel)]="newEmail.recipient" #recipient="ngModel" [typeahead]="emailAdresses" />
+      <div *ngIf="recipient.invalid && recipient.touched">
+        <span *ngIf="recipient.errors.required" class="badge badge-danger">Wpisz adres e-mail odbiorcy!</span>
+      </div>
+      <!-- <div [hidden]="recipient.valid || recipient.untouched" class="alert alert-danger">
+        Wpisz adres e-mail odbiorcy!
+      </div> -->
+    </div>
+
+    <div class="form-group">
+      <label for="title">Temat wiadomości</label>
+      <input type="text" id="title" name="title" required [(ngModel)]="newEmail.title" #title="ngModel" pattern="^[a-zA-Z\s]*$" maxlength="500" />
+      <div *ngIf="title.invalid && title.touched">
+        <span *ngIf="title.errors.required" class="badge badge-danger">Wpisz tytuł e-mail!</span>
+        <span *ngIf="title.errors.pattern" class="badge badge-danger">Tytuł może zawierać jedynie litery i spacje!</span>
+        <span *ngIf="title.errors.maxlength" class="badge badge-danger">Tytuł może zawierać jedynie do 500 znaków!</span>
+      </div>
+      <!-- <div [hidden]="title.valid || title.untouched" class="alert alert-danger">
+          Wpisz tytuł e-mail!
+      </div> -->
+    </div>
+
+    <div class="form-group">
+      <angular-editor id="message" name="message" [(ngModel)]="newEmail.message" maxlength="1000"></angular-editor>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" [disabled]="emailForm.form.pristine"
+      (click)="emailForm.reset()">Clear</button>
+    <button type="button" class="btn btn-danger"
+      (click)="activeModal.close()">Close</button>
+    <!-- <button type="button" class="btn btn-danger"
+      (click)="sendMessage()">Send</button> -->
+    <button type="submit" class="btn btn-success" [disabled]="!emailForm.form.valid">Submit</button>
+  </div>
+
+</form>

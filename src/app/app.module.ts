@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AppComponent } from './app.component';
 import { TestItemComponent } from './test-item/test-item.component';
@@ -43,12 +44,14 @@ const routes: Routes = [];
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     HttpClientModule,
-    AngularEditorModule
+    AngularEditorModule,
+    TypeaheadModule.forRoot(),
   ],
   exports: [RouterModule],
   providers: [
     EmailService
   ],
+  entryComponents: [MailFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

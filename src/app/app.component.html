@@ -2,7 +2,8 @@
   <div class="row flex-xl-nowrap">
     <div class="col-2 col-lg-2">
         <nav class="toc">
-          <app-email (newEmail)="newEmailEvent($event)"></app-email>
+          <!-- <app-email (newEmail)="newEmailEvent($event)"></app-email> -->
+          <app-mail-modal></app-mail-modal>
           <app-sidebar (myClick)="inboxTypeSelected($event)"></app-sidebar>
         </nav>
     </div>
@@ -13,22 +14,3 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">New message</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p><input type="text" [(ngModel)]="title" /></p>
-    <p><angular-editor placeholder="'Wpisz treść e-maila'" [(ngModel)]="message"></angular-editor></p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light"
-      (click)="modal.close('Close click')">Close</button>
-    <button type="button" class="btn btn-danger"
-      (click)="sendMessage(modal)">Send</button>
-  </div>
-</ng-template>
