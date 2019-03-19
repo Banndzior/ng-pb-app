@@ -37,7 +37,7 @@ export class AppComponent implements OnInit{
     let bt =document.getElementById('bt') ;
    if(e.key==="Tab" && bt){
     
-     bt.click()
+     bt.click();
    }
   })
   }
